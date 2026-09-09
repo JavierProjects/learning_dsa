@@ -1,0 +1,238 @@
+{
+  "total_pages": 43,
+  "sections": {
+    "1.1": 4,
+    "1.2": 7,
+    "1.3": 10,
+    "1.4": 13,
+    "1.5": 18,
+    "1.6": 23,
+    "1.7": 26,
+    "1.8": 29,
+    "1.9": 34,
+    "1.10": 37
+  },
+  "labs": {
+    "p01": 15,
+    "p02": 20,
+    "p03": 31,
+    "p04": 39
+  },
+  "pages": [
+    {
+      "page": 1,
+      "title": "Portada",
+      "remaining_height": 90.1
+    },
+    {
+      "page": 2,
+      "title": "Recorrido",
+      "remaining_height": 58.3
+    },
+    {
+      "page": 3,
+      "title": "Cómo trabajar",
+      "remaining_height": 58.3
+    },
+    {
+      "page": 4,
+      "title": "1.1 Objetos, tipos y mutabilidad",
+      "remaining_height": 54.2
+    },
+    {
+      "page": 5,
+      "title": "1.1 Ejercicios",
+      "remaining_height": 125.8
+    },
+    {
+      "page": 6,
+      "title": "1.1 Respuestas",
+      "remaining_height": 166.1
+    },
+    {
+      "page": 7,
+      "title": "1.2 Variables, asignación y referencias",
+      "remaining_height": 174.8
+    },
+    {
+      "page": 8,
+      "title": "1.2 Ejercicios",
+      "remaining_height": 76.2
+    },
+    {
+      "page": 9,
+      "title": "1.2 Respuestas",
+      "remaining_height": 168.7
+    },
+    {
+      "page": 10,
+      "title": "1.3 Identidad e igualdad",
+      "remaining_height": 85.2
+    },
+    {
+      "page": 11,
+      "title": "1.3 Ejercicios",
+      "remaining_height": 76.6
+    },
+    {
+      "page": 12,
+      "title": "1.3 Respuestas",
+      "remaining_height": 144.3
+    },
+    {
+      "page": 13,
+      "title": "1.4 Mutación y reasignación",
+      "remaining_height": 124.6
+    },
+    {
+      "page": 14,
+      "title": "1.4 Ejercicios",
+      "remaining_height": 76.6
+    },
+    {
+      "page": 15,
+      "title": "P01 Práctica",
+      "remaining_height": 169.5
+    },
+    {
+      "page": 16,
+      "title": "1.4 Respuestas",
+      "remaining_height": 156.5
+    },
+    {
+      "page": 17,
+      "title": "P01 Revisión",
+      "remaining_height": 266.3
+    },
+    {
+      "page": 18,
+      "title": "1.5 Referencias en funciones",
+      "remaining_height": 84.6
+    },
+    {
+      "page": 19,
+      "title": "1.5 Ejercicios",
+      "remaining_height": 26.6
+    },
+    {
+      "page": 20,
+      "title": "P02 Práctica",
+      "remaining_height": 168.7
+    },
+    {
+      "page": 21,
+      "title": "1.5 Respuestas",
+      "remaining_height": 190.5
+    },
+    {
+      "page": 22,
+      "title": "P02 Revisión",
+      "remaining_height": 253.1
+    },
+    {
+      "page": 23,
+      "title": "1.6 Copias de listas simples",
+      "remaining_height": 111.8
+    },
+    {
+      "page": 24,
+      "title": "1.6 Ejercicios",
+      "remaining_height": 64.2
+    },
+    {
+      "page": 25,
+      "title": "1.6 Respuestas",
+      "remaining_height": 156.5
+    },
+    {
+      "page": 26,
+      "title": "1.7 Anidamiento y copia superficial",
+      "remaining_height": 98.9
+    },
+    {
+      "page": 27,
+      "title": "1.7 Ejercicios",
+      "remaining_height": 89.0
+    },
+    {
+      "page": 28,
+      "title": "1.7 Respuestas",
+      "remaining_height": 141.7
+    },
+    {
+      "page": 29,
+      "title": "1.8 Repetición de listas y matrices",
+      "remaining_height": 161.6
+    },
+    {
+      "page": 30,
+      "title": "1.8 Ejercicios",
+      "remaining_height": 76.2
+    },
+    {
+      "page": 31,
+      "title": "P03 Práctica",
+      "remaining_height": 168.7
+    },
+    {
+      "page": 32,
+      "title": "1.8 Respuestas",
+      "remaining_height": 139.1
+    },
+    {
+      "page": 33,
+      "title": "P03 Revisión",
+      "remaining_height": 240.5
+    },
+    {
+      "page": 34,
+      "title": "1.9 Copia profunda",
+      "remaining_height": 57.4
+    },
+    {
+      "page": 35,
+      "title": "1.9 Ejercicios",
+      "remaining_height": 14.2
+    },
+    {
+      "page": 36,
+      "title": "1.9 Respuestas",
+      "remaining_height": 126.9
+    },
+    {
+      "page": 37,
+      "title": "1.10 Integración y matices de mutabilidad",
+      "remaining_height": 147.2
+    },
+    {
+      "page": 38,
+      "title": "1.10 Ejercicios",
+      "remaining_height": 51.4
+    },
+    {
+      "page": 39,
+      "title": "P04 Práctica",
+      "remaining_height": 119.1
+    },
+    {
+      "page": 40,
+      "title": "1.10 Respuestas",
+      "remaining_height": 143.7
+    },
+    {
+      "page": 41,
+      "title": "P04 Revisión",
+      "remaining_height": 116.7
+    },
+    {
+      "page": 42,
+      "title": "Cierre",
+      "remaining_height": 30.1
+    },
+    {
+      "page": 43,
+      "title": "Glosario y fuentes",
+      "remaining_height": 116.6
+    }
+  ]
+}

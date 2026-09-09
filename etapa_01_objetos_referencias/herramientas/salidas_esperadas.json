@@ -1,0 +1,154 @@
+[
+  {
+    "path": "ejemplos/d01.py",
+    "stdout": "11\n[11]\n"
+  },
+  {
+    "path": "ejercicios/e01.py",
+    "stdout": "hola\nHOLA\n"
+  },
+  {
+    "path": "ejercicios/e02.py",
+    "stdout": "Ana\n19\n"
+  },
+  {
+    "path": "ejemplos/d02.py",
+    "stdout": "[1, 2, 3, 4]\n[1, 2, 3, 4]\n"
+  },
+  {
+    "path": "ejercicios/e03.py",
+    "stdout": "[7, 8]\n[7, 8]\n[7, 8]\n"
+  },
+  {
+    "path": "ejercicios/e04.py",
+    "stdout": "7\n8\n"
+  },
+  {
+    "path": "ejemplos/d03.py",
+    "stdout": "True\nFalse\nTrue\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e05.py",
+    "stdout": "True\nFalse\nFalse\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e06.py",
+    "stdout": "True\nTrue\nFalse\n"
+  },
+  {
+    "path": "ejemplos/d04.py",
+    "stdout": "[1, 2, 3]\n[1, 2, 3, 4]\nFalse\n"
+  },
+  {
+    "path": "ejercicios/e07.py",
+    "stdout": "[1, 2, 3]\n[1, 2, 3]\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e08.py",
+    "stdout": "[]\n[9]\nFalse\n"
+  },
+  {
+    "path": "ejemplos/d05.py",
+    "stdout": "['X']\n"
+  },
+  {
+    "path": "ejercicios/e09.py",
+    "stdout": "[1, 2, 3]\n"
+  },
+  {
+    "path": "ejercicios/e10.py",
+    "stdout": "{'key': 'value'}\n"
+  },
+  {
+    "path": "ejemplos/d06.py",
+    "stdout": "[1, 2, 'hola', True]\n[99, 2, 'hola', True]\nFalse\n"
+  },
+  {
+    "path": "ejercicios/e11.py",
+    "stdout": "[99, 20]\n[10, 20, 30]\n"
+  },
+  {
+    "path": "ejercicios/e12.py",
+    "stdout": "True\nFalse\n['A', 'B']\n[]\n"
+  },
+  {
+    "path": "ejemplos/d07.py",
+    "stdout": "[99, 2]\n[[99, 2], [99, 2]]\n[[99, 2], [99, 2]]\nFalse\n"
+  },
+  {
+    "path": "ejercicios/e13.py",
+    "stdout": "[[1, 2], [3, 4]]\n[[99, 2], [3, 4]]\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e14.py",
+    "stdout": "[[99, 2], [3, 4]]\n[[99, 2], [3, 4]]\nTrue\n"
+  },
+  {
+    "path": "ejemplos/d08.py",
+    "stdout": "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e15.py",
+    "stdout": "[0]\n[[1, 0, 0], [1, 0, 0], [1, 0, 0]]\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e16.py",
+    "stdout": "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]\nFalse\n"
+  },
+  {
+    "path": "ejemplos/d09.py",
+    "stdout": "[[1, 2], [3, 4]]\n[[99, 2], [3, 4]]\nFalse\n"
+  },
+  {
+    "path": "ejercicios/e17.py",
+    "stdout": "[8, 9]\n[8, 9, 10]\n"
+  },
+  {
+    "path": "ejercicios/e18.py",
+    "stdout": "[[0], [0]]\n[[7], [7]]\nTrue\nFalse\n"
+  },
+  {
+    "path": "ejemplos/d10.py",
+    "stdout": "([1, 2, 3], 'grupo A')\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e19.py",
+    "stdout": "[([1, 2], 'A')]\n[([1, 2], 'A')]\nTrue\n"
+  },
+  {
+    "path": "ejercicios/e20.py",
+    "stdout": "Toyota\n300\nTrue\n"
+  },
+  {
+    "path": "practicas/p01.py",
+    "stdout": "[1, 2, 3]\nTrue\n10 13\n"
+  },
+  {
+    "path": "soluciones/s01.py",
+    "stdout": "[]\nTrue\n10 13\n"
+  },
+  {
+    "path": "practicas/p02.py",
+    "stdout": "[1, 2]\nNone\n"
+  },
+  {
+    "path": "soluciones/s02.py",
+    "stdout": "[1, 2]\n[1, 2, 99]\nFalse\n"
+  },
+  {
+    "path": "practicas/p03.py",
+    "stdout": "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]\n[[1, 0, 0], [1, 0, 0], [1, 0, 0]]\nFalse\nTrue\n"
+  },
+  {
+    "path": "soluciones/s03.py",
+    "stdout": "[[0, 0, 0], [0, 0, 0], [0, 0, 0]]\n[[1, 0, 0], [0, 0, 0], [0, 0, 0]]\nFalse\nFalse\n"
+  },
+  {
+    "path": "practicas/p04.py",
+    "stdout": "Desarrollo 99\nPruebas 99\n"
+  },
+  {
+    "path": "soluciones/s04.py",
+    "stdout": "Desarrollo 25\nPruebas 99\nFalse\nFalse\nFalse\n"
+  }
+]

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="518.0" height="112" preserveAspectRatio="xMinYMin meet" viewBox="0 0 518 112" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="518.0" height="112"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-112)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="4" y="101" style="font-family: DejaVu Sans, sans-serif; font-weight: bold; font-size: 8.2px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,202) scale(1,-1)">Dos listas distintas; a y b comparten A</text>
+			<rect x="8" y="62" width="48" height="22" rx="2" ry="2" style="stroke: rgb(74%,77%,79%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(95%,95%,96%); fill-rule: evenodd;"/>
+			<text x="29.548828125" y="70.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,140) scale(1,-1)">a</text>
+			<rect x="8" y="18" width="48" height="22" rx="2" ry="2" style="stroke: rgb(74%,77%,79%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(95%,95%,96%); fill-rule: evenodd;"/>
+			<text x="29.4609375" y="26.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,52) scale(1,-1)">b</text>
+			<rect x="96" y="36" width="148" height="37" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="157.666015625" y="56.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,113) scale(1,-1)">lista A</text>
+			<text x="159.24609375" y="46.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,93) scale(1,-1)">[1, 2]</text>
+			<path d="M 56,73 L 96,65 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="96 65, 91.52855 68.13786, 90.66564 63.8233" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 56,29 L 96,44 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="96 44, 90.54588 44.30431, 92.09083 40.18446" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<rect x="282" y="42" width="42" height="22" rx="2" ry="2" style="stroke: rgb(74%,77%,79%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(95%,95%,96%); fill-rule: evenodd;"/>
+			<text x="300.80078125" y="50.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,100) scale(1,-1)">c</text>
+			<rect x="361" y="35" width="147" height="37" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="422.158203125" y="55.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,111) scale(1,-1)">lista B</text>
+			<text x="423.74609375" y="45.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,91) scale(1,-1)">[1, 2]</text>
+			<path d="M 324,53 L 361,53 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="361 53, 356 55.2, 356 50.8" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>
