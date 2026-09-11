@@ -6,9 +6,9 @@ Material de aprendizaje progresivo con Python. La primera etapa aborda objetos, 
 
 - [Guía imprimible en PDF: Objetos y referencias en memoria](etapa_01_objetos_referencias/output/pdf/guia_objetos_referencias.pdf)
 - [Instrucciones y archivos de la etapa uno](etapa_01_objetos_referencias/README.md)
-- [Versión de consulta en Markdown](etapa_01_objetos_referencias/guia_objetos_referencias.md)
+- [Guía web interactiva](https://learning-dsa-objetos-referencias.noisy-spool-3552.chatgpt.site)
 
-La guía contiene **10 temas, 10 ejemplos resueltos, 20 ejercicios de predicción, 10 variaciones y 4 prácticas de laboratorio**. Sus 43 páginas están preparadas en tamaño carta para impresión en blanco y negro. Incluye espacios de respuesta y soluciones razonadas después del intento.
+La guía contiene **10 temas, 10 ejemplos resueltos, 20 ejercicios de predicción, 10 variaciones y 4 prácticas de laboratorio**. Sus 44 páginas están preparadas en tamaño carta para impresión en blanco y negro. Incluye espacios de respuesta y soluciones razonadas después del intento.
 
 ## Forma de trabajo
 
@@ -22,4 +22,8 @@ Los programas se ejecutan localmente con **Python 3.10 o posterior**, sin paquet
 
 ## Para editar el material
 
-La [fuente editable](etapa_01_objetos_referencias/fuentes/contenido.py) genera el PDF, la versión Markdown, los diagramas y los 38 programas. Las [instrucciones de edición y verificación](etapa_01_objetos_referencias/README.md#edicion-y-verificacion-docente) explican cómo mantenerlos sincronizados.
+La web añade una pestaña de variación a cada ejercicio. Primero completa las salidas y la explicación; después puedes verificar. Las salidas se comparan automáticamente y la explicación se revisa con una respuesta razonada. Las respuestas se mantienen al cambiar de pestaña durante la sesión; al recargar la página se reinician.
+
+La web alojada es una vista privada de revisión. Para usarla sin conexión en el laboratorio, descarga el repositorio y abre `dist/index.html` en el navegador; conserva los archivos de `dist/` juntos.
+
+La [fuente editable](etapa_01_objetos_referencias/fuentes/contenido.py) genera el PDF, el contenido de la web, los diagramas y los 38 programas. Las [instrucciones de edición y verificación](etapa_01_objetos_referencias/README.md#edicion-y-verificacion-docente) explican cómo mantenerlos sincronizados.

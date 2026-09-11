@@ -52,3 +52,15 @@ Se añadieron ejemplos con cadenas y enteros, igualdad frente a identidad, difer
 - [Módulo copy](https://docs.python.org/3/library/copy.html)
 - [Operaciones de secuencias](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations)
 - [PRIMM, Raspberry Pi Foundation](https://static.raspberrypi.org/files/curriculum/quickreads/11-Pedagogy_Summary_PRIMM_US_PRIMM.pdf)
+
+## Edición 1.1: lectura y práctica web
+
+La analogía distingue cinco elementos: nombre (etiqueta), referencia (flecha), tipo, valor e identidad (folio de la tarjeta). La identidad pertenece al objeto. En `x = x` se hace una asignación sin cambiar de objeto; con `x = x + 1`, para un entero, el nombre pasa a señalar otro objeto. Se conserva la precisión sobre `id()` en CPython y otras implementaciones.
+
+La pregunta de 1.4 explicita que `x` y `y` inicialmente comparten una lista. Pregunta por el contenido observado mediante `x`: `y.append(4)` modifica esa lista; `y = y + [4]` hace que `y` señale una nueva.
+
+En ambos formatos, los nombres, funciones, métodos y expresiones se destacan con tipografía de código. En las referencias de la prosa se escribe E01, D01 o P01; los nombres reales de archivo permanecen en minúsculas.
+
+La web reemplaza la versión completa en Markdown. Incluye 20 casos iniciales, 20 variaciones y las 4 prácticas. Cada caso exige todas sus salidas y respuestas escritas antes de mostrar la revisión. Los campos con solo espacios se consideran vacíos. La revisión de salidas es automática; las explicaciones abiertas y el código propuesto requieren autoevaluación o revisión docente. No se usa IA ni se envían respuestas a un servidor.
+
+Las comprobaciones de interacción usan un DOM simulado y cubren formularios incompletos, respuestas correctas e incorrectas, edición posterior, independencia de las pestañas y conservación de respuestas durante la navegación. No sustituyen una revisión visual en dispositivos reales. La web aloja una copia del mismo PDF y puede distribuirse completa para abrirla sin conexión.

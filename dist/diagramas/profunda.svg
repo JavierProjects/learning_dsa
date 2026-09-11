@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="518.0" height="112" preserveAspectRatio="xMinYMin meet" viewBox="0 0 518 112" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="518.0" height="112"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-112)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="4" y="101" style="font-family: DejaVu Sans, sans-serif; font-weight: bold; font-size: 8.2px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,202) scale(1,-1)">Original</text>
+			<text x="270" y="101" style="font-family: DejaVu Sans, sans-serif; font-weight: bold; font-size: 8.2px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,202) scale(1,-1)">Copia profunda, tras cambiar una celda</text>
+			<path d="M 258,6 L 258,103 Z" style="stroke: rgb(74%,77%,79%); stroke-linecap: butt; stroke-width: 0.5;"/>
+			<rect x="4" y="29" width="79" height="49" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="28.548828125" y="60.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,121) scale(1,-1)">original</text>
+			<text x="23.208984375" y="50.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,101) scale(1,-1)">posición 0</text>
+			<text x="23.208984375" y="40.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,81) scale(1,-1)">posición 1</text>
+			<rect x="123" y="60" width="120" height="24" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="166.8828125" y="69.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,138) scale(1,-1)">B: [1, 2]</text>
+			<rect x="123" y="17" width="120" height="24" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="166.833984375" y="26.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,52) scale(1,-1)">C: [3, 4]</text>
+			<path d="M 83,49 L 123,72 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="123 72, 117.5688 71.41484, 119.7621 67.60045" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 83,37 L 123,29 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="123 29, 118.5286 32.13786, 117.6656 27.8233" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<rect x="268" y="29" width="79" height="49" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="289.400390625" y="60.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,121) scale(1,-1)">profunda</text>
+			<text x="287.208984375" y="50.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,101) scale(1,-1)">posición 0</text>
+			<text x="287.208984375" y="40.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,81) scale(1,-1)">posición 1</text>
+			<rect x="387" y="60" width="120" height="24" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="428.5546875" y="69.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,138) scale(1,-1)">E: [99, 2]</text>
+			<rect x="387" y="17" width="120" height="24" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="431.326171875" y="26.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,52) scale(1,-1)">F: [3, 4]</text>
+			<path d="M 347,49 L 387,72 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="387 72, 381.5688 71.41484, 383.7621 67.60045" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 347,37 L 387,29 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="387 29, 382.5286 32.13786, 381.6656 27.8233" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>

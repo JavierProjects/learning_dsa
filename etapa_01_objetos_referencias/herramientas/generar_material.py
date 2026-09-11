@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genera PDF, Markdown, diagramas SVG y programas desde fuentes/contenido.py.
+"""Genera PDF, guía web, diagramas SVG y programas desde fuentes/contenido.py.
 
 Uso desde cualquier carpeta: python3 ruta/a/herramientas/generar_material.py
 Dependencia exclusiva de edición: reportlab. Los scripts del alumno usan
@@ -35,6 +35,7 @@ SOURCE = runpy.run_path(str(ROOT / "fuentes" / "contenido.py"))
 UNITS = SOURCE["UNIDADES"]
 LABS = {p["id"]: p for p in SOURCE["PRACTICAS"]}
 SOURCES = SOURCE["FUENTES"]
+ANALOGY = SOURCE["ANALOGIA"]
 PDF_PATH = ROOT / "output" / "pdf" / "guia_objetos_referencias.pdf"
 WIDTH, HEIGHT = letter
 LEFT, RIGHT, TOP, BOTTOM = 47, 47, 57, 44
@@ -80,7 +81,7 @@ def rich(text):
     """Escape prose and apply only explicit inline backtick formatting."""
     parts = re.split(r"(`[^`]+`)", text)
     return "".join(
-        '<font name="DsaMono">' + html.escape(p[1:-1]) + "</font>"
+        '<font name="DsaMono" backColor="#e9edf2">' + html.escape(p[1:-1]) + "</font>"
         if p.startswith("`") and p.endswith("`") else html.escape(p)
         for p in parts
     ).replace("\n", "<br/>")
@@ -353,7 +354,7 @@ def answer_page(unit):
 def lab_page(lab):
     parts = page_title(lab["id"].upper(), lab["title"], "Comprueba en Python | práctica de laboratorio")
     parts += [para("Meta: " + lab["goal"], "small"),
-              para(f"Archivo: practicas/{lab['id']}.py. Trabaja desde la carpeta etapa_01_objetos_referencias.", "small"),
+              para(f"Archivo: `practicas/{lab['id']}.py`. Abre la carpeta `etapa_01_objetos_referencias`.", "small"),
               heading("Programa inicial: primero predice"), block(lab["initial"]["code"]),
               Spacer(1, 6)]
     for n, task in enumerate(lab["tasks"], 1):
@@ -365,7 +366,7 @@ def lab_page(lab):
                     ["Variante / corrección", "\n\n", "\n\n"]], widths=[95, 160, CW - 255],
                    row_heights=[29, 47, 55]),
               Spacer(1, 6),
-              para("Para ejecutar: python3 practicas/" + lab["id"] + ".py  |  En Windows: py practicas/" + lab["id"] + ".py", "tiny")]
+              para("Para ejecutar: `python3 practicas/" + lab["id"] + ".py`  |  En Windows: `py practicas/" + lab["id"] + ".py`", "tiny")]
     return parts
 
 
@@ -377,7 +378,7 @@ def lab_answer_page(lab):
               Spacer(1, 6), para("Salida", "kicker"),
               block(lab["solution"]["expected"], output=True),
               para(lab["solution"]["explanation"], "small"),
-              para(f"Archivo de referencia: soluciones/{lab['solution']['id']}.py.", "small"),
+              para(f"Archivo de referencia: `soluciones/{lab['solution']['id']}.py`.", "small"),
               RuledSpace(56, "¿Qué cambié y qué evidencia demuestra que mi solución cumple la consigna?")]
     return parts
 
@@ -401,7 +402,7 @@ def cover():
         Spacer(1, 20),
         RuledSpace(67, "Nombre:                                             Grupo:                      Fecha:"),
         Spacer(1, 13),
-        para("Edición 1.0 | Septiembre de 2026", "small"),
+        para("Edición 1.1 | Septiembre de 2026", "small"),
         para("Formato carta, preparado para impresión en blanco y negro. Los programas del estudiante funcionan con Python 3.10 o posterior y su biblioteca estándar.", "small"),
     ]
 
@@ -424,7 +425,7 @@ def navigation(start_pages, lab_pages, end_pages):
 
 def method():
     return [para("ANTES DE EMPEZAR", "kicker"), para("Cómo trabajar con la guía", "title"),
-            para("Se supone que ya reconoces variables, índices de listas, claves de diccionarios, ciclos sencillos y la sintaxis de una función. Los recordatorios de abajo te permiten empezar sin consultar una página web."),
+            para("Para empezar, necesitas reconocer variables, índices, claves de diccionarios, ciclos sencillos y la sintaxis de una función. Aquí tienes un recordatorio para consultar mientras trabajas."),
             grid(["Acción", "Qué haces"], [
                 ["1. Leer", "Estudia el concepto, el ejemplo resuelto y su diagrama."],
                 ["2. Predecir", "Escribe la salida y justifica qué objeto o referencia cambia."],
@@ -434,19 +435,32 @@ def method():
             ], [86, CW - 86]),
             heading("Recordatorio de sintaxis"),
             grid(["Expresión", "Lectura"], [
-                ["datos[0]", "Primer elemento de una lista. Los índices empiezan en 0."],
-                ['alumno["edad"]', "Valor asociado a la clave edad de un diccionario."],
-                ["lista.append(x)", "Agrega un elemento al final de la lista existente."],
-                ["lista[:]", "Con listas, obtiene una copia superficial de todas sus posiciones."],
-                ["def f(datos):", "Define una función cuyo parámetro local se llama datos."],
-                ["return resultado", "Devuelve un objeto al código que llamó a la función."],
-                ["range(3)", "Permite recorrer los valores 0, 1 y 2 en un ciclo."],
-                ["None", "Objeto que indica ausencia de un resultado útil en estos ejemplos."],
+                ["`datos[0]`", "Primer elemento de una lista. Los índices empiezan en 0."],
+                ['`alumno["edad"]`', 'Valor asociado a la clave `"edad"` de un diccionario.'],
+                ["`lista.append(x)`", "Agrega un elemento al final de la misma lista."],
+                ["`lista[:]`", "Crea una copia superficial de la lista."],
+                ["`def f(datos):`", "Define la función `f()` con el parámetro local `datos`."],
+                ["`return resultado`", "Entrega un objeto al código que llamó a la función."],
+                ["`range(3)`", "Permite recorrer los valores `0`, `1` y `2` en un ciclo."],
+                ["`None`", "Objeto que representa la ausencia de un resultado útil en estos ejemplos."],
             ], [144, CW - 144], font="tiny"),
             heading("Preparación para el laboratorio"),
-            para("Abre la carpeta etapa_01_objetos_referencias en la computadora. Cada archivo es independiente y debe ejecutarse desde el inicio. Ejemplo en macOS o Linux: python3 ejercicios/e05.py. En Windows: py ejercicios/e05.py. También puedes ejecutar el archivo completo desde tu editor.", "small"),
+            para("Abre la carpeta `etapa_01_objetos_referencias`. Ejecuta cada archivo completo, desde el inicio. En macOS o Linux: `python3 ejercicios/e05.py`. En Windows: `py ejercicios/e05.py`. También puedes usar tu editor.", "small"),
             para("No se necesitan servicios en línea ni paquetes adicionales. Mantén la guía impresa abierta y utiliza el intérprete para comprobar tus predicciones. En un cuaderno interactivo, reinicia el entorno antes de cada ejemplo para evitar estados anteriores.", "small"),
-            para("Las identidades se comparan como True o False. No se piden valores numéricos de id() ni se califican direcciones de memoria.", "small")]
+            para("Compara las identidades con respuestas `True` o `False`. No necesitas memorizar números de `id()` ni direcciones de memoria.", "small")]
+
+
+def analogy_page():
+    a = ANALOGY
+    return page_title("1.1", a["title"], "Una analogía para seguir las referencias") + [
+        para(a["intro"]), para(a["labels"]),
+        grid(a["table"]["headers"], a["table"]["rows"], [95, CW - 95], font="tiny"),
+        heading("Asignar puede llevarnos a la misma tarjeta o a otra"),
+        para(a["same"], "small"), para(a["other"], "small"),
+        block(a["code"]), Spacer(1, 6),
+        para("Salida: `True` y después `False`.", "small"),
+        para(a["conclusion"], "small"),
+    ]
 
 
 def closure():
@@ -478,8 +492,9 @@ def sources_page():
                  ["Referencia", "Relación que permite llegar a un objeto desde un nombre o un contenedor."],
                  ["Alias", "Otro nombre o referencia que llega al mismo objeto."],
                  ["Mutación", "Cambio del estado de un objeto existente."],
-                 ["Reasignación", "Cambio del objeto asociado a un nombre."],
-                 ["Identidad", "Distinción de un objeto frente a otros; se compara con is."],
+                 ["Asignación", "Indicar qué objeto señala un nombre; puede ser el mismo que antes u otro."],
+                 ["Reasignación", "Volver a asignar un nombre; en los ejemplos puede pasar a señalar otro objeto."],
+                 ["Identidad", "Lo que distingue a un objeto concreto. Se compara con `is` y permanece mientras el objeto existe."],
                  ["Copia superficial", "Nuevo contenedor exterior que reutiliza referencias a sus elementos."],
                  ["Copia profunda", "Copia recursiva que puede conservar alias internos y reutilizar inmutables."],
              ], [105, CW - 105], font="tiny"),
@@ -500,6 +515,8 @@ def pages():
     for unit in UNITS:
         start_pages[unit["number"]] = len(result) + 1
         result.append((unit["number"] + " " + unit["title"], read_page(unit)))
+        if unit["number"] == "1.1":
+            result.append(("1.1 Tarjetas, etiquetas y flechas", analogy_page()))
         result.append((unit["number"] + " Ejercicios", exercise_page(unit)))
         if "lab" in unit:
             lab = LABS[unit["lab"]]
@@ -558,64 +575,12 @@ def build_pdf():
     return len(document_pages)
 
 
-def write_markdown():
-    out = ["# Objetos y referencias en memoria", "", "Estructura y Organización de Datos | Python | Etapa 1", "",
-           "Guía de aprendizaje autónomo. Edición 1.0, septiembre de 2026.", "",
-           "[Descargar el PDF imprimible](output/pdf/guia_objetos_referencias.pdf)", "",
-           "Lee, predice y dibuja antes de ejecutar. Conserva tu predicción, compara la salida y explica cualquier diferencia. Cada programa debe ejecutarse desde su inicialización. No se piden valores numéricos concretos de `id()`.", "",
-           "## Preparación", "", "Python 3.10 o posterior. Los programas del estudiante no necesitan paquetes externos. Desde esta carpeta: `python3 ejercicios/e05.py` (macOS/Linux) o `py ejercicios/e05.py` (Windows).", "",
-           "Los diagramas usan etiquetas simbólicas A, B y C, sin representar direcciones ni ubicaciones físicas. Los contenidos de los contenedores se abrevian.", ""]
-
-    def md_program(p, answer=False):
-        lines = ["```python", p["code"].rstrip(), "```", ""]
-        if answer:
-            lines += ["Salida:", "", "```text", p["expected"].rstrip(), "```", "", p["explanation"], ""]
-        return lines
-
-    def md_table(table):
-        headers, rows = table["headers"], table["rows"]
-        return ["| " + " | ".join(headers) + " |",
-                "| " + " | ".join("---" for _ in headers) + " |"] + ["| " + " | ".join(row) + " |" for row in rows] + [""]
-
-    for unit in UNITS:
-        ex = unit["example"]
-        out += [f"## {unit['number']} {unit['title']}", "", "**Meta:** " + unit["goal"], "", "**Pregunta inicial:** " + unit["question"], ""]
-        for p in unit["concepts"]:
-            out += [p, ""]
-        if "table" in unit:
-            out += md_table(unit["table"])
-        out += [f"### Ejemplo resuelto {ex['id'].upper()}", "", f"[Archivo](ejemplos/{ex['id']}.py)", ""] + md_program(ex, answer=True)
-        out += [f"![Diagrama de {unit['title']}](diagramas/{unit['diagram']}.svg)", "", "**Observa:** " + unit["pitfall"], "", "### Resuelve en papel", ""]
-        for exercise in unit["exercises"]:
-            out += [f"#### {exercise['id'].upper()}: {exercise['title']}", "", f"[Archivo](ejercicios/{exercise['id']}.py)", ""] + md_program(exercise)
-            out += [f"{n}. {q}" for n, q in enumerate(exercise["questions"], 1)] + [""]
-        out += ["**Una variación:** " + unit["variation"], ""]
-        if "lab" in unit:
-            lab = LABS[unit["lab"]]
-            out += [f"### {lab['id'].upper()}: {lab['title']}", "", lab["goal"], "", f"[Programa inicial](practicas/{lab['id']}.py)", ""] + md_program(lab["initial"])
-            out += [f"{n}. {q}" for n, q in enumerate(lab["tasks"], 1)] + [""]
-        out += ["### Respuestas razonadas (después del intento)", ""]
-        for exercise in unit["exercises"]:
-            out += [f"**{exercise['id'].upper()}**", "", "```text", exercise["expected"].rstrip(), "```", "", exercise["explanation"], ""]
-        out += ["**La variación:** " + unit["variation_answer"], "", "**Antes de avanzar:** " + unit["checkpoint"], ""]
-        if "lab" in unit:
-            lab = LABS[unit["lab"]]
-            out += ["### Revisión de " + lab["id"].upper(), ""]
-            for p in lab["answers"]:
-                out += [p, ""]
-            out += [f"[Solución de referencia](soluciones/{lab['solution']['id']}.py)", ""] + md_program(lab["solution"], answer=True)
-    out += ["## Cierre", "", "Explica qué objetos se comparten, qué instrucción causa el cambio y qué debes copiar o reasignar para obtener el comportamiento solicitado. Resuelve una variante sin depender de probar al azar.", "", "## Fuentes de consulta", ""]
-    for title, url, note in SOURCES:
-        out += [f"- [{title}]({url}). {note}"]
-    out += ["", "Fuente editable: `fuentes/contenido.py`. Regenera el material con `python3 herramientas/generar_material.py`.", ""]
-    (ROOT / "guia_objetos_referencias.md").write_text("\n".join(out), encoding="utf-8")
-
-
 def main():
     write_programs()
     export_diagrams()
-    write_markdown()
     n = build_pdf()
+    from generar_web import build_web
+    build_web(SOURCE)
     print(f"Generados: {n} páginas, {len(list(all_programs()))} programas y {len(UNITS)} diagramas.")
     print(PDF_PATH)
 

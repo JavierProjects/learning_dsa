@@ -21,16 +21,16 @@ def programa(identificador, titulo, codigo, salida, explicacion, preguntas=None)
 UNIDADES = [
     {
         "number": "1.1", "title": "Objetos, tipos y mutabilidad",
-        "goal": "Distinguir entre modificar un objeto y obtener un valor distinto, e identificar los tipos mutables habituales.",
-        "question": "Si un número es inmutable, ¿por qué podemos escribir n = n + 1?",
+        "goal": "Reconocer qué objetos pueden cambiar y qué ocurre cuando una variable señala otro objeto.",
+        "question": "Si los enteros no pueden cambiar, ¿por qué funciona `n = n + 1`?",
         "concepts": [
-            "En Python los datos se representan mediante objetos. Un objeto tiene un tipo, un valor y una identidad. El tipo determina qué operaciones admite; el valor describe su contenido o estado. La identidad permite distinguirlo de otros objetos y la estudiaremos en 1.3.",
-            "Un objeto mutable admite cambios en su estado después de crearse. Un objeto inmutable conserva su estado. Esta propiedad corresponde al objeto: una variable puede pasar a nombrar otro objeto. Por eso n = n + 1 es válido aunque los enteros sean inmutables.",
+            "En Python trabajamos con objetos. Cada uno tiene un tipo, un valor y una identidad. En `x = 5`, el objeto es de tipo `int` y su valor es `5`. Su identidad permite reconocer ese objeto concreto, aunque otros tengan el mismo valor.",
+            "Un objeto mutable puede cambiar su contenido; uno inmutable lo conserva. Una variable es un nombre que señala un objeto. Por eso `n = n + 1` funciona: `n` pasa a señalar el entero resultante. El entero anterior conserva su valor.",
         ],
         "table": {
             "headers": ["Mutables", "Inmutables"],
-            "rows": [["list, dict, set", "int, float, bool, str, tuple"],
-                     ["Consulta adicional: bytearray", "Consulta: complex, bytes, range, frozenset"]],
+            "rows": [["`list`, `dict`, `set`", "`int`, `float`, `bool`, `str`, `tuple`"],
+                     ["Consulta adicional: `bytearray`", "Consulta: `complex`, `bytes`, `range`, `frozenset`"]],
         },
         "example": programa("d01", "Una lista cambia; un entero se sustituye", '''
             numero = 10
@@ -42,9 +42,9 @@ UNIDADES = [
         ''', '''
             11
             [11]
-        ''', "La suma obtiene el valor 11 y numero queda asociado al entero correspondiente. No modifica al entero 10. En cambio, datos[0] = 11 cambia qué elemento ocupa la primera posición de la misma lista; no modifica al entero que antes estaba allí."),
+        ''', "La suma da `11` y `numero` pasa a señalar ese entero. El entero `10` conserva su valor. En la lista, `datos[0] = 11` reemplaza su primer elemento: cambia la misma lista, no el entero que estaba allí."),
         "diagram": "mutabilidad",
-        "pitfall": "Cambiar una variable no demuestra que el objeto anterior sea mutable. Una cadena admite operaciones como upper(), pero estas no modifican la cadena original.",
+        "pitfall": "Que una variable muestre otro valor no demuestra que el objeto anterior haya cambiado. Por ejemplo, `upper()` obtiene una cadena en mayúsculas sin modificar la cadena original.",
         "exercises": [
             programa("e01", "Una operación sobre una cadena", '''
                 texto = "hola"
@@ -54,7 +54,7 @@ UNIDADES = [
             ''', '''
                 hola
                 HOLA
-            ''', "upper() produce el resultado en mayúsculas; texto conserva su asociación con la cadena original. La operación no modifica esa cadena.", ["Escribe las dos líneas de salida.", "¿Se modificó la cadena a la que se refiere texto? Explica."]),
+            ''', "`texto.upper()` obtiene la cadena en mayúsculas. La cadena original conserva `hola`, y `texto` sigue señalándola. La variable `mayusculas` señala el resultado: `HOLA`.", ["Escribe las dos líneas de salida.", "¿Se modificó la cadena que señala `texto`? Explica."]),
             programa("e02", "Modificar un diccionario", '''
                 alumno = {"nombre": "Ana", "edad": 18}
                 alumno["edad"] = 19
@@ -63,19 +63,19 @@ UNIDADES = [
             ''', '''
                 Ana
                 19
-            ''', "El diccionario es mutable: cambia el valor asociado a la clave edad. No se transforma el entero 18 en 19 ni cambia el valor asociado a nombre. Clasificación: int, str y tuple son inmutables; list, dict y set son mutables.", ["Escribe la salida y señala qué objeto cambió.", "Clasifica int, str, list, tuple, dict y set por mutabilidad."]),
+            ''', "Cambia el diccionario de `alumno`, en la entrada `\"edad\"`. El entero `18` no se transforma en `19`. Los tipos `int`, `str` y `tuple` son inmutables; `list`, `dict` y `set` son mutables.", ["Escribe la salida e identifica qué objeto cambió.", "Clasifica `int`, `str`, `list`, `tuple`, `dict` y `set` según su mutabilidad."]),
         ],
-        "variation": "En e01, sustituye la asignación a mayusculas por texto = texto.upper() y muestra solo texto. ¿Cambiaría la mutabilidad de str?",
-        "variation_answer": "Se imprimiría HOLA. str seguiría siendo inmutable: texto quedaría asociado a la cadena resultante.",
-        "checkpoint": "Puedo explicar por qué asignar un nuevo valor a una variable no cambia la mutabilidad de su objeto anterior.",
+        "variation": "En E01, reemplaza la segunda línea por `texto = texto.upper()` y muestra solo `texto`. ¿Las cadenas dejarían de ser inmutables?",
+        "variation_answer": "Se imprimiría `HOLA`. Las cadenas siguen siendo inmutables: ahora `texto` señala la cadena resultante, y la original conserva su contenido.",
+        "checkpoint": "Puedo explicar la diferencia entre cambiar un objeto y hacer que una variable señale otro.",
     },
     {
         "number": "1.2", "title": "Variables, asignación y referencias",
-        "goal": "Representar nombres que comparten un objeto y explicar por qué una asignación no lo copia.",
-        "question": "Al escribir y = x, ¿aparece otra lista o aparece otro nombre para la misma lista?",
+        "goal": "Dibujar las referencias y reconocer cuándo varios nombres señalan el mismo objeto.",
+        "question": "Cuando escribes `y = x`, ¿creas otra lista o das otro nombre a la misma lista?",
         "concepts": [
-            "Una variable es un nombre vinculado a un objeto. Llamaremos referencia a la relación que permite llegar a ese objeto. En x = [1, 2, 3] se crea una lista y x queda asociado a ella. En y = x se evalúa x y se vincula y al mismo objeto.",
-            "La asignación no copia automáticamente el objeto. Dos nombres que llegan al mismo objeto son alias. Si modificamos ese objeto mediante uno de ellos, el cambio se observa también a través del otro. Esto no exige que uno de los nombres se actualice o envíe datos al otro.",
+            "Piensa en una variable como una etiqueta y en un objeto como una tarjeta. La referencia es la flecha que une ambos. Con `x = [1, 2, 3]` creamos una lista y la señalamos con `x`. Con `y = x`, también `y` señala esa lista.",
+            "La asignación no hace una copia. Si dos nombres señalan el mismo objeto, los llamamos alias. Cuando modificas la lista usando uno, ves el cambio también desde el otro: ambos te llevan a la misma lista.",
         ],
         "example": programa("d02", "Dos nombres, una lista", '''
             x = [1, 2, 3]
@@ -86,9 +86,9 @@ UNIDADES = [
         ''', '''
             [1, 2, 3, 4]
             [1, 2, 3, 4]
-        ''', "Después de y = x hay una sola lista. append(4) agrega un elemento a esa lista. Los dos print recorren el mismo objeto y muestran su estado actualizado."),
+        ''', "`x` y `y` señalan la misma lista. Al ejecutar `y.append(4)`, esa lista cambia. Las dos impresiones muestran el cambio porque consultan el mismo objeto."),
         "diagram": "alias",
-        "pitfall": "Un diagrama con dos nombres no implica dos objetos. Cuenta las cajas de objetos y sigue las flechas. Las etiquetas A y B de nuestros dibujos son simbólicas, nunca direcciones reales.",
+        "pitfall": "Dos nombres no significan dos objetos. Cuenta las cajas de objetos y sigue las flechas. Los folios A y B de los dibujos son simbólicos; no son direcciones reales.",
         "exercises": [
             programa("e03", "Una tercera referencia", '''
                 a = [7]
@@ -102,7 +102,7 @@ UNIDADES = [
                 [7, 8]
                 [7, 8]
                 [7, 8]
-            ''', "a, b y c se refieren a una única lista. c.append(8) la modifica. Las asignaciones b = a y c = b no crean listas adicionales.", ["Predice la salida y dibuja los tres nombres.", "¿Cuántas listas se han creado?"]),
+            ''', "Se crea una sola lista. Los nombres `a`, `b` y `c` la señalan. La instrucción `c.append(8)` la modifica; las asignaciones anteriores no hicieron copias.", ["Predice la salida y dibuja los tres nombres.", "¿Cuántas listas se crearon?"]),
             programa("e04", "La misma asignación con enteros", '''
                 a = 7
                 b = a
@@ -112,19 +112,19 @@ UNIDADES = [
             ''', '''
                 7
                 8
-            ''', "Tras b = a ambos nombres se refieren al mismo entero. La última asignación vincula b al entero 8; a conserva su referencia al 7. La regla de asignación es la misma que con listas.", ["Escribe la salida y dibuja las referencias al final.", "¿Se modificó el entero 7?"]),
+            ''', "Después de `b = a`, ambos nombres señalan el entero `7`. La suma hace que `b` pase a señalar el `8`. La variable `a` sigue señalando el `7`, que conserva su valor.", ["Escribe la salida y dibuja las referencias al final.", "¿Se modificó el entero `7`?"]),
         ],
-        "variation": "En e03, cambia solamente b = a por b = [7]. Mantén c = b. Predice las tres salidas y dibuja las listas que existirán.",
-        "variation_answer": "Las salidas serían [7], [7, 8] y [7, 8]. a se refiere a una lista; b y c comparten una segunda lista creada por [7].",
-        "checkpoint": "Puedo distinguir el número de nombres del número de listas y explicar por qué compartir una lista propaga la observación de sus cambios.",
+        "variation": "En E03, cambia únicamente `b = a` por `b = [7]`. Conserva `c = b`. ¿Qué se imprimirá y cuántas listas habrá?",
+        "variation_answer": "Se imprimen `[7]`, `[7, 8]` y `[7, 8]`. La variable `a` señala una lista; `b` y `c` comparten la segunda, creada con `[7]`.",
+        "checkpoint": "Puedo contar los objetos sin confundirlos con los nombres que los señalan.",
     },
     {
         "number": "1.3", "title": "Identidad e igualdad",
-        "goal": "Anticipar si dos expresiones se refieren al mismo objeto sin depender de números de identidad concretos.",
+        "goal": "Predecir si dos nombres señalan el mismo objeto, sin memorizar números de identificación.",
         "question": "¿Dos listas que imprimen lo mismo tienen que ser la misma lista?",
         "concepts": [
-            "Para las listas de estos ejemplos, == compara sus contenidos; is comprueba si ambas expresiones se refieren al mismo objeto. Dos listas distintas pueden ser iguales. Podemos compartir una lista mediante asignación o crear dos listas separadas con el mismo contenido.",
-            "id(objeto) devuelve un entero que identifica al objeto durante su vida. En CPython coincide con una dirección de memoria; eso es un detalle de esa implementación. Los valores concretos no son una respuesta fija entre ejecuciones. Aquí solo anticiparemos coincidencias o diferencias entre objetos que existen al mismo tiempo.",
+            "La identidad distingue a un objeto concreto. En la analogía, es el folio de la tarjeta; la flecha representa la referencia. Para nuestras listas, `==` compara el contenido e `is` comprueba si se trata del mismo objeto. Dos listas pueden ser iguales y tener identidades distintas.",
+            "La función `id(objeto)` devuelve un número que identifica al objeto mientras existe. En CPython es su dirección de memoria; en otras implementaciones no tiene que serlo. Compararemos si los identificadores coinciden entre objetos que existen al mismo tiempo.",
         ],
         "example": programa("d03", "Iguales no significa compartidas", '''
             a = [1, 2]
@@ -139,9 +139,9 @@ UNIDADES = [
             False
             True
             True
-        ''', "a y b comparten una lista. c se refiere a otra lista con los mismos elementos. Por eso el contenido de a y c es igual, pero sus identidades son diferentes. Comparar los id de a y b confirma que se trata del mismo objeto."),
+        ''', "`a` y `b` comparten una lista. La variable `c` señala otra con el mismo contenido. Por eso `a == c` da `True`, pero `a is c` da `False`. Los identificadores de `a` y `b` coinciden porque señalan el mismo objeto."),
         "diagram": "identidad",
-        "pitfall": "Usa == para comparar valores. No bases una regla general en is con números o cadenas literales: Python puede reutilizar ciertos objetos inmutables. Un id puede reutilizarse cuando el objeto anterior ya no existe.",
+        "pitfall": "Usa `==` para comparar valores. Con números y cadenas, Python puede reutilizar objetos: no saques reglas generales a partir de `is` entre literales. Cuando un objeto deja de existir, su identificador puede reutilizarse.",
         "exercises": [
             programa("e05", "Tres comparaciones", '''
                 a = [5]
@@ -156,7 +156,7 @@ UNIDADES = [
                 False
                 False
                 True
-            ''', "a y c llegan a una lista; b llega a otra. Las listas tienen el mismo contenido. La última comparación es True porque a y c identifican al mismo objeto vivo.", ["Predice cada booleano; no escribas direcciones.", "Dibuja las listas y escribe qué nombres comparten identidad."]),
+            ''', "`a` y `c` comparten una lista; `b` señala otra. Las dos listas contienen `5`, pero son objetos distintos. La última comparación da `True` porque `a` y `c` señalan el mismo objeto.", ["Predice cada `True` o `False`; no escribas direcciones.", "Dibuja las listas e indica qué nombres señalan el mismo objeto."]),
             programa("e06", "Objetos vacíos", '''
                 x = []
                 y = x
@@ -168,19 +168,19 @@ UNIDADES = [
                 True
                 True
                 False
-            ''', "Cada expresión [] crea una lista nueva. x y z son listas vacías iguales; y comparte la de x. Las dos listas están vivas y sus id son distintos.", ["Escribe la salida.", "¿Sería válido exigir un número específico como respuesta a id(x)?"]),
+            ''', "Cada `[]` crea otra lista. Las listas de `x` y `z` están vacías y son iguales, pero son objetos distintos. La variable `y` comparte la de `x`. No se puede exigir un valor numérico fijo para `id(x)` entre ejecuciones.", ["Escribe las tres líneas de salida.", "¿Podemos exigir un número específico como respuesta a `id(x)` en cualquier ejecución?"]),
         ],
-        "variation": "En e05 cambia únicamente c = a por c = b. ¿Cuáles de las cuatro respuestas cambian?",
-        "variation_answer": "La salida pasa a True, False, True, False. Cambian la tercera y la cuarta comparación. No es válido exigir un id numérico fijo en e06: lo relevante es la relación de identidad.",
-        "checkpoint": "Puedo justificar cada comparación siguiendo referencias, sin memorizar números de id ni confundir == con is.",
+        "variation": "En E05, cambia únicamente `c = a` por `c = b`. ¿Cuáles de las cuatro respuestas cambian?",
+        "variation_answer": "Ahora se imprime `True`, `False`, `True` y `False`: cambian la tercera y la cuarta respuesta. En E06 no podemos exigir un número fijo para `id(x)`; buscamos saber si dos identificadores coinciden.",
+        "checkpoint": "Puedo explicar cuándo dos listas son iguales y cuándo son la misma lista.",
     },
     {
         "number": "1.4", "title": "Mutación y reasignación",
-        "goal": "Identificar el objeto afectado por una operación y distinguir cambios de contenido de cambios de asociación.",
-        "question": "¿Por qué y.append(4) y y = y + [4] pueden producir efectos diferentes sobre x?",
+        "goal": "Distinguir si una instrucción modifica un objeto o cambia el objeto que señala una variable.",
+        "question": "Si `x` y `y` comparten una lista, ¿por qué `y.append(4)` y `y = y + [4]` afectan de forma distinta lo que vemos mediante `x`?",
         "concepts": [
-            "Mutar es modificar el estado de un objeto existente. Reasignar un nombre es vincularlo a otro objeto. Una lista admite mutación mediante append(), clear() y asignaciones por índice. En cambio, y = [] cambia la asociación del nombre y.",
-            "Con listas incorporadas, + crea una lista nueva y += extiende la lista existente. Con enteros, += obtiene un resultado y reasigna el nombre. No memorices += como sinónimo universal de una de estas conductas: identifica el tipo y la operación.",
+            "Mutar es cambiar un objeto existente. Por ejemplo, `x.append(3)` agrega un elemento a la misma lista. Asignar es indicar qué objeto señala un nombre: con `x = x` seguimos en el mismo; con `x = x + [3]` señalamos una lista nueva.",
+            "Con listas, `+` crea otra lista y `+=` amplía la existente. Con enteros, `+=` hace que el nombre señale el resultado de la suma. Antes de decidir qué cambia, mira el tipo de objeto y la operación.",
         ],
         "example": programa("d04", "La concatenación crea otra lista", '''
             x = [1, 2, 3]
@@ -193,9 +193,9 @@ UNIDADES = [
             [1, 2, 3]
             [1, 2, 3, 4]
             False
-        ''', "La expresión y + [4] construye otra lista. La asignación mueve la referencia de y a esa lista. x continúa asociado a la primera. En y[0] = 9, en cambio, el nombre y no se reasigna: cambia un elemento de la lista a la que llega."),
+        ''', "Primero, `y + [4]` crea otra lista. Después, `y` pasa a señalarla. La variable `x` sigue señalando la lista inicial. Si hubiéramos usado `y.append(4)`, habría cambiado la lista compartida y lo veríamos también mediante `x`."),
         "diagram": "reasignacion",
-        "pitfall": "x.clear() vacía una lista existente; x = [] vincula x a una lista nueva. Además, append() y clear() devuelven None: escribir x = x.append(4) hace perder a x su referencia a la lista.",
+        "pitfall": "`x.clear()` vacía la misma lista; `x = []` hace que `x` señale otra. Los métodos `append()` y `clear()` devuelven `None`: si escribes `x = x.append(4)`, al final `x` señalará `None`.",
         "exercises": [
             programa("e07", "La suma aumentada sobre una lista", '''
                 x = [1, 2]
@@ -208,7 +208,7 @@ UNIDADES = [
                 [1, 2, 3]
                 [1, 2, 3]
                 True
-            ''', "Para list, += extiende la lista existente. Los dos nombres siguen llegando a ella; por eso cambia lo que se observa desde x y la identidad compartida se conserva.", ["Predice las tres salidas.", "Contrasta este caso con el ejemplo resuelto de la sección."]),
+            ''', "Con listas, `+=` agrega elementos a la misma lista. Por eso `x` y `y` siguen compartiéndola. En D04, la operación `+` creó otra lista y después `y` pasó a señalarla.", ["Predice las tres salidas.", "¿Qué diferencia hay con el ejemplo D04?"]),
             programa("e08", "Vaciar y después reasignar", '''
                 x = [1, 2]
                 y = x
@@ -221,11 +221,11 @@ UNIDADES = [
                 []
                 [9]
                 False
-            ''', "clear() primero vacía la lista compartida. Después y = [9] crea otra lista y cambia únicamente la asociación de y. x sigue llegando a la lista vacía.", ["Dibuja el estado tras clear() y el estado final.", "Identifica cuál línea muta y cuál reasigna."]),
+            ''', "Primero, `y.clear()` vacía la lista compartida. Después, `y = [9]` crea otra lista y hace que `y` la señale. La variable `x` sigue señalando la lista vacía.", ["Dibuja las referencias después de `y.clear()` y al final.", "¿Qué línea modifica la lista y cuál hace que `y` señale otra?"]),
         ],
-        "variation": "Sustituye y += [3] por y = y + [3] en e07. Después compara a = 10; b = a; b += 3. Explica ambos casos.",
-        "variation_answer": "La variante de listas imprime [1, 2], [1, 2, 3] y False: + construye una lista nueva. Con enteros, a sigue siendo 10 y b queda asociado al 13. El entero 10 no se modifica.",
-        "checkpoint": "Puedo señalar si una instrucción cambia un objeto, una posición del contenedor o la asociación de un nombre.",
+        "variation": "En E07, cambia `y += [3]` por `y = y + [3]`. Después analiza `a = 10; b = a; b += 3`. ¿Qué cambia en cada caso?",
+        "variation_answer": "Con listas se imprime `[1, 2]`, `[1, 2, 3]` y `False`: la suma crea otra lista. Con enteros, `a` sigue señalando el `10` y `b` pasa a señalar el `13`. El entero `10` conserva su valor.",
+        "checkpoint": "Puedo decir qué objeto señala cada nombre antes y después de una instrucción.",
         "lab": "p01",
     },
 ]
@@ -234,11 +234,11 @@ UNIDADES = [
 UNIDADES.extend([
     {
         "number": "1.5", "title": "Referencias en funciones",
-        "goal": "Explicar los efectos de mutar un argumento o reasignar un parámetro local, y recuperar resultados mediante return.",
-        "question": "¿Por qué una función puede agregar elementos a tu lista, pero lst = [] no la vacía?",
+        "goal": "Explicar cuándo una función modifica un objeto compartido y cuándo entrega un resultado con `return`.",
+        "question": "¿Por qué una función puede agregar elementos a tu lista, pero escribir `lst = []` dentro de ella no la vacía?",
         "concepts": [
-            "Al llamar una función, sus parámetros se vinculan a los objetos recibidos. Python pasa argumentos por asignación: el parámetro es un nombre local que puede compartir objeto con un nombre del código que llama. La regla es la misma para listas, diccionarios, enteros y cadenas.",
-            "Mutar un objeto compartido permite observar el cambio desde fuera de la función. Reasignar el parámetro cambia solo su asociación local. Si la función obtiene otro objeto que el llamador necesita, puede devolverlo con return; el llamador decide a qué nombre asociarlo.",
+            "Al llamar a una función, sus parámetros se convierten en nombres locales para los objetos recibidos. Es como añadir una etiqueta a cada tarjeta. Python pasa argumentos por asignación: esta regla funciona igual con listas, diccionarios, enteros y cadenas.",
+            "Si la función modifica un objeto compartido, puedes ver el cambio fuera de ella. Si reasigna su parámetro, solo cambia lo que señala ese nombre local. Para entregar un resultado al código que la llamó, usa `return` y guarda ese resultado cuando lo necesites.",
         ],
         "example": programa("d05", "Dos funciones sobre el mismo argumento", '''
             def add_item(lst):
@@ -253,9 +253,9 @@ UNIDADES.extend([
             print(my_list)
         ''', '''
             ['X']
-        ''', "add_item vincula lst a la lista de my_list y la modifica. En reset_list, lst inicialmente llega a esa misma lista, pero lst = [] lo vincula a otra. my_list conserva su referencia. Al acabar cada llamada, el nombre local lst no se convierte en un nombre del llamador."),
+        ''', "`add_item()` agrega `\"X\"` a la lista compartida por `my_list` y `lst`. En `reset_list()`, la instrucción `lst = []` hace que solo el parámetro local señale otra lista. La variable `my_list` sigue señalando la primera."),
         "diagram": "funciones",
-        "pitfall": "El comportamiento no significa que las listas se pasen de una forma y los enteros de otra. Cambia lo que admite cada objeto. Una función sin return explícito devuelve None.",
+        "pitfall": "Las listas y los enteros siguen la misma regla al entrar a una función. La diferencia está en qué operaciones permiten. Si una función termina sin ejecutar `return` con un valor, devuelve `None`.",
         "exercises": [
             programa("e09", "Reasignar dentro de la función", '''
                 def modify(lst):
@@ -266,7 +266,7 @@ UNIDADES.extend([
                 print(numbers)
             ''', '''
                 [1, 2, 3]
-            ''', "lst + [99] construye otra lista. La asignación solo vincula el parámetro local a ella; numbers sigue asociado a la lista inicial.", ["Escribe la salida y dibuja las dos listas durante la llamada.", "¿Qué cambiaría si la función utilizara lst.append(99)?"]),
+            ''', "`lst + [99]` crea otra lista, y solo el parámetro `lst` pasa a señalarla. La variable `numbers` conserva la lista inicial. Con `lst.append(99)` sí cambiaría esa lista compartida.", ["Escribe la salida y dibuja las dos listas durante la llamada.", "¿Qué cambiaría si la función usara `lst.append(99)`?"]),
             programa("e10", "Actualizar y reiniciar un diccionario", '''
                 def update_dict(d):
                     d["key"] = "value"
@@ -280,20 +280,20 @@ UNIDADES.extend([
                 print(my_dict)
             ''', '''
                 {'key': 'value'}
-            ''', "update_dict cambia el diccionario compartido. reset_dict solo reasigna su parámetro d. Al retornar, my_dict sigue llegando al diccionario con la entrada key.", ["Identifica la mutación y la reasignación local.", "Propón una línea que permita a reset_dict vaciar el diccionario recibido."]),
+            ''', "`update_dict()` modifica el diccionario de `my_dict`. La función `reset_dict()` solo hace que su parámetro `d` señale otro diccionario. Para vaciar el recibido, podría ejecutar `d.clear()`.", ["Identifica la línea que modifica el diccionario y la que reasigna `d`.", "Propón una línea para que `reset_dict()` vacíe el diccionario recibido."]),
         ],
-        "variation": "En e09, haz que la función devuelva lst + [99]. Compara llamar modify(numbers) sin guardar el resultado y escribir numbers = modify(numbers).",
-        "variation_answer": "Sin guardar el retorno, numbers conserva [1, 2, 3]. Al asignarlo, numbers queda asociado a [1, 2, 3, 99]. La variante append(99) mutaría la lista original. En e10, d.clear() la vaciaría sin reasignar d.",
-        "checkpoint": "Puedo distinguir la modificación de un argumento de la reasignación de su parámetro y explicar cuándo debo usar el resultado devuelto.",
+        "variation": "En E09, haz que la función devuelva `lst + [99]`. Compara `modify(numbers)` con `numbers = modify(numbers)`: ¿en cuál guardas la lista resultante?",
+        "variation_answer": "Sin guardar el resultado, `numbers` conserva `[1, 2, 3]`. Al asignarlo, señala `[1, 2, 3, 99]`. Si usas `lst.append(99)`, cambia la lista original. En E10, `d.clear()` vacía el diccionario recibido.",
+        "checkpoint": "Puedo explicar qué cambia fuera de una función y cuándo necesito guardar lo que devuelve.",
         "lab": "p02",
     },
     {
         "number": "1.6", "title": "Copias de listas simples",
-        "goal": "Distinguir una asignación de una copia superficial y comprobar qué cambios quedan aislados en listas simples.",
-        "question": "¿Qué diferencia existe entre copia = original y copia = original.copy()?",
+        "goal": "Elegir entre compartir una lista o copiarla para modificarla por separado.",
+        "question": "¿Qué cambia si escribes `copia = original.copy()` en lugar de `copia = original`?",
         "concepts": [
-            "original.copy() crea otra lista. Esa nueva lista comienza con referencias a los mismos elementos que la primera. Se llama copia superficial: se crea el contenedor exterior, pero no se copian recursivamente los objetos que contiene.",
-            "Para listas, original[:] también crea una copia superficial. Si sus elementos son enteros, cadenas o booleanos, sustituir una posición en la copia no cambia el contenedor original. Esto no transforma los enteros ni las cadenas; cambia una referencia dentro de la lista nueva.",
+            "Con `original.copy()` creas otra lista. Sus posiciones empiezan señalando los mismos elementos que la original. A esto lo llamamos copia superficial: copias la lista exterior, pero no haces nuevas copias de cada objeto que contiene.",
+            "También puedes copiar una lista con `original[:]`. Si contiene enteros, cadenas o booleanos, cambiar una posición de la copia no modifica la lista original. Lo que cambia es qué objeto ocupa esa posición de la lista nueva.",
         ],
         "example": programa("d06", "Una copia con elementos inmutables", '''
             original = [1, 2, "hola", True]
@@ -306,9 +306,9 @@ UNIDADES.extend([
             [1, 2, 'hola', True]
             [99, 2, 'hola', True]
             False
-        ''', "Se crean dos listas distintas. Cambiar la posición 0 de copia no altera la posición 0 de original. Las posiciones restantes pueden seguir refiriéndose a los mismos objetos inmutables; eso no impide que las listas sean distintas."),
+        ''', "Hay dos listas. Reemplazar la primera posición de `copia` no cambia la de `original`. Los demás elementos pueden seguir siendo los mismos objetos inmutables, aunque las listas que los contienen sean distintas."),
         "diagram": "copia_simple",
-        "pitfall": "El nombre copia no garantiza una copia. copia = original sigue siendo una asignación. Tampoco basta decir 'los elementos son inmutables' si un elemento es una tupla que contiene una lista: revisaremos ese caso en 1.10.",
+        "pitfall": "Llamar `copia` a una variable no crea una copia: `copia = original` comparte la lista. Más adelante veremos por qué una tupla que contiene una lista requiere mirar un nivel adicional.",
         "exercises": [
             programa("e11", "Una copia y un alias", '''
                 original = [10, 20]
@@ -321,7 +321,7 @@ UNIDADES.extend([
             ''', '''
                 [99, 20]
                 [10, 20, 30]
-            ''', "copia es otra lista y recibe el 30. alias comparte la lista de original y cambia su primera posición. Cada modificación afecta un contenedor distinto.", ["Predice la salida y dibuja las dos listas.", "¿Qué nombres comparten identidad?"]),
+            ''', "`copia` señala otra lista, a la que se agrega `30`. La variable `alias` comparte la lista de `original` y reemplaza su primer elemento por `99`. Son dos cambios sobre dos listas distintas.", ["Predice la salida y dibuja las dos listas.", "¿Qué nombres señalan la misma lista?"]),
             programa("e12", "Copiar mediante un corte", '''
                 a = ["A", "B"]
                 b = a[:]
@@ -335,19 +335,19 @@ UNIDADES.extend([
                 False
                 ['A', 'B']
                 []
-            ''', "a[:] construye otra lista con los mismos elementos. Inicialmente los contenidos coinciden. clear() vacía únicamente la lista a la que se refiere b.", ["Escribe cada línea de salida.", "¿Por qué vaciar b no vacía a?"]),
+            ''', "`a[:]` crea otra lista con los mismos elementos. Al principio son iguales, pero `a is b` da `False`. Después, `b.clear()` vacía solamente la lista de `b`.", ["Escribe cada línea de salida.", "¿Por qué vaciar la lista de `b` no vacía la de `a`?"]),
         ],
-        "variation": "En e12 sustituye b = a[:] por b = a. Predice nuevamente todos los resultados.",
-        "variation_answer": "Se imprimirían True, True, [] y []. b sería un alias de a y clear() vaciaría la única lista. En e11, original y alias comparten identidad.",
-        "checkpoint": "Puedo elegir entre compartir una lista y crear otra lista cuando necesito modificar su contenedor por separado.",
+        "variation": "En E12, cambia `b = a[:]` por `b = a`. Vuelve a predecir las cuatro salidas.",
+        "variation_answer": "Se imprime `True`, `True`, `[]` y `[]`. Ahora `a` y `b` comparten una lista y `b.clear()` la vacía. En E11, quienes comparten la misma lista son `original` y `alias`.",
+        "checkpoint": "Puedo decidir cuándo compartir una lista y cuándo necesito una copia.",
     },
     {
         "number": "1.7", "title": "Anidamiento y copia superficial",
-        "goal": "Seguir referencias por varios niveles y distinguir la sustitución de una fila de la mutación de esa fila.",
-        "question": "¿Por qué una copia distinta puede seguir compartiendo las listas que hay en su interior?",
+        "goal": "Seguir las referencias de una lista anidada y distinguir entre reemplazar una fila y modificarla.",
+        "question": "Si copias una lista, ¿pueden seguir compartidas las listas que hay dentro?",
         "concepts": [
-            "Una lista puede contener referencias a otras listas. original[0] llega al objeto que ocupa su primera posición; original[0][0] llega, a través de él, a una posición del contenedor interior. Conviene dibujar por separado la lista exterior y cada lista interior.",
-            "Una copia superficial crea otro contenedor exterior y reutiliza las referencias de sus elementos. Por eso copia[0] = [99] sustituye una posición del exterior nuevo, mientras copia[0][0] = 99 modifica una lista interior que puede seguir compartida con original.",
+            "Una lista puede señalar otras listas. En `original[0][0]`, el primer índice nos lleva a la primera lista interior y el segundo a su primer elemento. Dibuja la lista exterior y cada lista interior en cajas separadas.",
+            "Una copia superficial crea otra lista exterior, pero conserva las referencias a las interiores. Así, `copia[0] = [99]` reemplaza una fila de la copia; `copia[0][0] = 99` cambia una fila que puede seguir compartida con `original`.",
         ],
         "example": programa("d07", "Dos exteriores y una lista interior", '''
             a = [1, 2]
@@ -363,9 +363,9 @@ UNIDADES.extend([
             [[99, 2], [99, 2]]
             [[99, 2], [99, 2]]
             False
-        ''', "b y c son listas exteriores distintas. Sus cuatro posiciones llegan a la misma lista a. Modificar c[0][0] modifica esa única lista interior. Imprimir b y c produce el mismo contenido, aunque b is c sea False."),
+        ''', "`b` y `c` son dos listas exteriores distintas. Las cuatro posiciones entre ambas señalan la misma lista de `a`. La instrucción `c[0][0] = 99` cambia esa lista interior y el cambio se ve al imprimir cualquiera de las dos listas exteriores."),
         "diagram": "anidamiento",
-        "pitfall": "Preguntar solo '¿se hizo una copia?' es insuficiente. Hay que identificar qué objeto se copió y cuáles continúan compartidos.",
+        "pitfall": "Cuando leas «se hizo una copia», pregunta: ¿de qué objeto? Después identifica cuáles siguen compartidos.",
         "exercises": [
             programa("e13", "Sustituir una fila de la copia", '''
                 original = [[1, 2], [3, 4]]
@@ -378,7 +378,7 @@ UNIDADES.extend([
                 [[1, 2], [3, 4]]
                 [[99, 2], [3, 4]]
                 True
-            ''', "La asignación cambia la primera posición del exterior copia. La primera fila original no se modifica. La segunda fila sigue siendo un objeto compartido entre los exteriores.", ["Escribe la salida y señala qué referencia se sustituyó.", "¿Sigue existiendo alguna fila compartida?"]),
+            ''', "`copia[0] = [99, 2]` reemplaza la primera fila de la copia. La primera fila de `original` conserva su contenido. La segunda fila sigue compartida entre ambas listas exteriores.", ["Escribe la salida y señala qué referencia se reemplazó.", "¿Sigue compartida alguna fila?"]),
             programa("e14", "Modificar una fila compartida", '''
                 original = [[1, 2], [3, 4]]
                 copia = original.copy()
@@ -390,11 +390,11 @@ UNIDADES.extend([
                 [[99, 2], [3, 4]]
                 [[99, 2], [3, 4]]
                 True
-            ''', "La primera fila es la misma lista en ambos exteriores. Modificar su posición 0 se observa desde los dos. El efecto difiere de e13 porque cambia el objeto interior, no la referencia a la fila en el exterior.", ["Predice las salidas y dibuja ambos niveles.", "Explica por qué e13 y e14 afectan de manera distinta a original."]),
+            ''', "La primera fila sigue siendo una sola lista compartida. Al cambiar su primer elemento, ves el resultado desde `original` y desde `copia`. En E13 se reemplazó la referencia a la fila; aquí se modifica la fila misma.", ["Predice las salidas y dibuja ambos niveles.", "¿Por qué E13 y E14 afectan de forma distinta a `original`?"]),
         ],
-        "variation": "En e14 cambia solo copia[0][0] = 99 por copia.append([5, 6]). ¿Qué contenedor se modifica?",
-        "variation_answer": "Se modifica únicamente el exterior copia: original conserva [[1, 2], [3, 4]] y copia queda [[1, 2], [3, 4], [5, 6]]. La comparación de la primera fila sigue siendo True.",
-        "checkpoint": "Puedo seguir cada índice hasta el objeto afectado y separar la identidad del exterior de la identidad de sus elementos.",
+        "variation": "En E14, cambia únicamente `copia[0][0] = 99` por `copia.append([5, 6])`. ¿Qué lista se modifica?",
+        "variation_answer": "Solo cambia la lista exterior `copia`. La lista `original` conserva `[[1, 2], [3, 4]]`; la copia queda `[[1, 2], [3, 4], [5, 6]]`. La primera fila sigue compartida: la comparación da `True`.",
+        "checkpoint": "Puedo seguir los índices hasta la lista que cambia y reconocer qué partes siguen compartidas.",
     },
 ])
 
@@ -402,11 +402,11 @@ UNIDADES.extend([
 UNIDADES.extend([
     {
         "number": "1.8", "title": "Repetición de listas y matrices",
-        "goal": "Explicar qué referencias repite el operador * y construir matrices con filas independientes.",
+        "goal": "Reconocer qué referencias se repiten con `*` y construir matrices cuyas filas puedan cambiar por separado.",
         "question": "¿Por qué modificar una sola celda puede cambiar lo que vemos en las tres filas?",
         "concepts": [
-            "La repetición de una lista produce otra lista que repite las referencias a sus elementos. No clona esos elementos. En [0] * 3 se obtiene una lista con tres posiciones referidas al entero 0. Sustituir una posición cambia esa lista; no modifica al entero 0.",
-            "En [[0] * 3] * 3 se crea una sola fila [0, 0, 0]. La lista exterior repite tres veces la referencia a esa fila mutable. Para obtener filas independientes debemos construir una fila nueva en cada iteración, por ejemplo con [[0] * 3 for _ in range(3)].",
+            "Al repetir una lista con `*`, se repiten las referencias a sus elementos. En `[0] * 3` obtienes tres posiciones que señalan el entero `0`. Puedes reemplazar una posición de esa lista sin modificar el entero.",
+            "En `[[0] * 3] * 3` hay una sola fila `[0, 0, 0]`: la lista exterior la señala tres veces. Para tener filas independientes, crea una nueva en cada vuelta del ciclo. La expresión `[[0] * 3 for _ in range(3)]` hace justamente eso.",
         ],
         "example": programa("d08", "Una fila compartida tres veces", '''
             matrix = [[0] * 3] * 3
@@ -416,9 +416,9 @@ UNIDADES.extend([
         ''', '''
             [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
             True
-        ''', "Hay una lista exterior y una fila interior. matrix[0][0] modifica esa fila interior; las tres posiciones del exterior siguen llegando a ella. Compartir puede ser intencional, pero no sirve si el problema exige que cada fila cambie por separado."),
+        ''', "Hay una lista exterior y una sola fila interior. La instrucción `matrix[0][0] = 1` cambia esa fila. Como las tres posiciones de la lista exterior señalan la misma fila, el cambio aparece tres veces al imprimir."),
         "diagram": "matrices",
-        "pitfall": "La comprensión evalúa [0] * 3 en cada iteración; _ es un nombre de variable cuyo valor no necesitamos. Usar a = [0] y [a * 3] * 3 mantiene el mismo problema: a * 3 crea una única fila nueva que luego se comparte.",
+        "pitfall": "La comprensión evalúa `[0] * 3` en cada vuelta. Usamos `_` porque no necesitamos el contador. Con `a = [0]` y `[a * 3] * 3`, también se crea una sola fila nueva y se comparte tres veces.",
         "exercises": [
             programa("e15", "Una variable explícita", '''
                 a = [0]
@@ -431,7 +431,7 @@ UNIDADES.extend([
                 [0]
                 [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
                 True
-            ''', "a * 3 crea una fila nueva distinta de a. El exterior comparte esa fila tres veces. La fila cambia, pero a sigue siendo la lista [0]. Al final son alcanzables tres listas mediante a y matrix: a, la fila y el exterior.", ["Predice las tres salidas.", "Distingue la lista a de la fila producida por a * 3."]),
+            ''', "`a * 3` crea una fila distinta de la lista de `a`. La lista exterior la señala tres veces. Cambia esa fila, mientras `a` conserva `[0]`. Al final, desde `a` y `matrix` puedes llegar a tres listas: la de `a`, la fila y la exterior.", ["Predice las tres salidas.", "¿La lista de `a` y la fila creada por `a * 3` son el mismo objeto? Explica."]),
             programa("e16", "Construcción con un ciclo", '''
                 matrix = []
                 for _ in range(3):
@@ -442,20 +442,20 @@ UNIDADES.extend([
             ''', '''
                 [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
                 False
-            ''', "En cada iteración se crea una fila nueva. El exterior termina con referencias a tres filas distintas. Sustituir una celda de la primera fila no modifica las otras dos.", ["Predice la salida y dibuja las tres filas.", "Reescribe la construcción mediante una comprensión de listas."]),
+            ''', "Cada vuelta del ciclo crea otra fila. Al cambiar una celda de la primera, las otras dos conservan su contenido. Puedes escribir la construcción como `matrix = [[0] * 3 for _ in range(3)]`.", ["Predice la salida y dibuja las tres filas.", "Escribe la construcción con una comprensión de listas."]),
         ],
-        "variation": "En e15 sustituye la construcción por matrix = [(a * 3).copy() for _ in range(3)]. ¿Sería indispensable .copy() aquí? ¿Qué tamaño tendría [a.copy(), a.copy(), a.copy()]?",
-        "variation_answer": "Se obtienen filas independientes; .copy() es redundante porque a * 3 ya se evalúa y crea una fila nueva en cada iteración. El ciclo de e16 equivale a [[0] * 3 for _ in range(3)]. Con a = [0], las tres copias de a formarían una matriz de 3 filas y 1 columna, no de 3 por 3.",
-        "checkpoint": "Puedo distinguir repetir referencias de construir objetos nuevos y comprobar la independencia entre filas.",
+        "variation": "En E15, usa `matrix = [(a * 3).copy() for _ in range(3)]`. ¿Hace falta `.copy()` aquí? Con `a = [0]`, ¿qué tamaño tendría `[a.copy(), a.copy(), a.copy()]`?",
+        "variation_answer": "Las filas son independientes. Aquí sobra `.copy()`, porque `a * 3` ya crea otra fila en cada vuelta. En E16 puedes usar `[[0] * 3 for _ in range(3)]`. Si copias tres veces `a = [0]`, obtienes 3 filas y 1 columna.",
+        "checkpoint": "Puedo explicar por qué repetir una fila no equivale a crear varias filas independientes.",
         "lab": "p03",
     },
     {
         "number": "1.9", "title": "Copia profunda",
-        "goal": "Elegir el nivel de copia necesario y comprobar la independencia entre objetos mutables originales y copiados.",
+        "goal": "Decidir qué necesitas copiar para modificar los objetos interiores sin afectar los originales.",
         "question": "Si necesito modificar listas interiores sin afectar al original, ¿qué debo copiar?",
         "concepts": [
-            "El módulo copy forma parte de la biblioteca estándar. copy.copy(objeto) realiza una copia superficial; copy.deepcopy(objeto) recorre y copia recursivamente los componentes que requieren copia. Con nuestras listas y diccionarios anidados, esto permite separar también los contenedores interiores.",
-            "La elección depende del cambio previsto. Una asignación sirve para compartir el mismo objeto. Una copia superficial basta para cambiar por separado las posiciones del exterior. Una copia profunda permite modificar contenedores interiores de estos ejemplos sin afectar los originales.",
+            "El módulo `copy` viene incluido en Python. Con `copy.copy(objeto)` haces una copia superficial. Con `copy.deepcopy(objeto)` también copias los contenedores interiores de nuestros ejemplos: las listas y los diccionarios anidados.",
+            "Elige según lo que necesites cambiar. Una asignación permite compartir el objeto. Una copia superficial separa el contenedor exterior. Una copia profunda permite cambiar los contenedores interiores de estos ejemplos sin modificar los originales.",
         ],
         "example": programa("d09", "Separar también las filas", '''
             import copy
@@ -470,9 +470,9 @@ UNIDADES.extend([
             [[1, 2], [3, 4]]
             [[99, 2], [3, 4]]
             False
-        ''', "Se crea otro exterior y se copian las filas. profunda[0] y original[0] son listas diferentes; modificar la primera no cambia la segunda. No hace falta que todos los objetos inmutables tengan otra identidad para lograr esta independencia."),
+        ''', "Se copian la lista exterior y las filas. Ahora `profunda[0]` y `original[0]` son listas distintas: cambiar una no modifica la otra. Para lograrlo no hace falta copiar también cada entero."),
         "diagram": "profunda",
-        "pitfall": "deepcopy no equivale a crear una copia distinta por cada aparición: puede conservar las relaciones de referencia compartida dentro de la copia. Para construir filas independientes, corrige su construcción; no confíes en deepcopy para separar alias internos.",
+        "pitfall": "`deepcopy()` puede mantener referencias compartidas dentro de la copia. Si dos posiciones señalaban una sola fila, pueden seguir señalando una sola fila copiada. Para separar esas filas, revisa cómo las construyes.",
         "exercises": [
             programa("e17", "Una lista dentro de un diccionario", '''
                 import copy
@@ -485,7 +485,7 @@ UNIDADES.extend([
             ''', '''
                 [8, 9]
                 [8, 9, 10]
-            ''', "La lista notas de la copia es distinta de la original. append(10) solo modifica la lista copiada. Una copia superficial del diccionario conservaría compartida esa lista.", ["Predice la salida.", "¿Qué objetos mutables se necesitan copiar para aislar este cambio?"]),
+            ''', "Se copian el diccionario y su lista `\"notas\"`. La instrucción `append(10)` cambia solo la lista copiada. Una copia superficial del diccionario dejaría esa lista compartida.", ["Predice las dos líneas de salida.", "¿Qué objetos mutables necesitas copiar para que este cambio no afecte al original?"]),
             programa("e18", "Una copia profunda conserva un alias interno", '''
                 import copy
 
@@ -502,19 +502,19 @@ UNIDADES.extend([
                 [[7], [7]]
                 True
                 False
-            ''', "deepcopy crea una nueva fila y reutiliza esa copia para las dos referencias internas. La fila original permanece intacta. Hay independencia respecto al original, pero las dos posiciones de copia continúan compartiendo una fila entre sí.", ["Predice la salida y dibuja originales y copias.", "Distingue independencia respecto al original e independencia entre las filas de copia."]),
+            ''', "`deepcopy()` copia la fila una vez y usa esa misma copia en las dos posiciones. La fila original conserva `[0]`. Hay independencia respecto al original, pero las dos posiciones de `copia` siguen compartiendo una fila.", ["Predice la salida y dibuja las listas originales y las copiadas.", "¿Las filas de `copia` son independientes de la original? ¿Son independientes entre sí?"]),
         ],
-        "variation": "En e17 usa original.copy(). En e18, crea copia = [elemento.copy() for elemento in original]. Predice qué cambia en cada caso.",
-        "variation_answer": "En e17 ambas listas mostrarían [8, 9, 10]: la lista interior se comparte. En e18 las salidas serían [[0], [0]], [[7], [0]], False y False. Cada iteración hace una copia diferente de la fila; eso basta porque sus elementos son enteros.",
-        "checkpoint": "Puedo justificar el nivel de copia elegido y distinguir aislamiento del original de separación de alias dentro de una copia.",
+        "variation": "En E17, usa `original.copy()`. En E18, usa `copia = [elemento.copy() for elemento in original]`. ¿Qué cambia en cada caso?",
+        "variation_answer": "En E17 se imprime `[8, 9, 10]` dos veces: la lista interior sigue compartida. En E18 se imprime `[[0], [0]]`, `[[7], [0]]`, `False` y `False`. Cada vuelta copia la fila por separado; sus elementos son enteros.",
+        "checkpoint": "Puedo elegir qué copiar y explicar si la copia comparte objetos con el original o entre sus propias posiciones.",
     },
     {
         "number": "1.10", "title": "Integración y matices de mutabilidad",
-        "goal": "Resolver casos que combinan contenedores, funciones y copias, identificando con precisión el objeto que cambia.",
+        "goal": "Resolver ejemplos que combinan funciones y contenedores, sin perder de vista qué objeto cambia.",
         "question": "¿Puede cambiar una lista contenida en una tupla aunque la tupla sea inmutable?",
         "concepts": [
-            "Una tupla mantiene las referencias de sus posiciones. Eso impide sustituir sus elementos, pero no vuelve inmutables a los objetos referidos. Si contiene una lista, esa lista conserva su mutabilidad y sus cambios pueden observarse al imprimir la tupla.",
-            "En problemas con varios niveles, sigue la ruta completa hasta el objeto afectado. En carro[\"motor\"][\"caballos\"] = 300 se modifica el diccionario motor. Copiar solo el diccionario carro no separa automáticamente ese motor. Los ejemplos de personas, equipos y carros se representan aquí con diccionarios.",
+            "Una tupla conserva los objetos a los que apuntan sus posiciones: no puedes reemplazarlos. Pero, si uno de ellos es una lista, esa lista sí puede cambiar. Por eso puedes observar contenido diferente al imprimir la tupla sin haber reemplazado ninguno de sus elementos.",
+            "Sigue la ruta hasta el objeto que cambia. En `carro[\"motor\"][\"caballos\"] = 300` modificas el diccionario del motor. Copiar solo el diccionario del carro no separa ese motor. Aquí representamos carros, personas y equipos mediante diccionarios.",
         ],
         "example": programa("d10", "Una tupla y su lista interior", '''
             datos = ([1, 2], "grupo A")
@@ -525,9 +525,9 @@ UNIDADES.extend([
         ''', '''
             ([1, 2, 3], 'grupo A')
             True
-        ''', "La tupla sigue conteniendo las mismas referencias: una a la lista y otra a la cadena. Lo que cambia es la lista. Una asignación datos[0] = [9] intentaría sustituir una posición de la tupla y produciría TypeError."),
+        ''', "La tupla sigue señalando la misma lista y la misma cadena. Solo cambia la lista interior. Si intentaras `datos[0] = [9]`, tratarías de reemplazar un elemento de la tupla y obtendrías `TypeError`."),
         "diagram": "tupla",
-        "pitfall": "Identifica siempre el objeto modificado. 'Hay una tupla' no significa que todo lo alcanzable sea inmutable, y 'hay una copia' no significa que todo lo alcanzable sea independiente.",
+        "pitfall": "Que haya una tupla no vuelve inmutables los objetos que contiene. Que haya una copia tampoco garantiza que todos los objetos interiores sean independientes.",
         "exercises": [
             programa("e19", "Copiar una lista que contiene una tupla", '''
                 original = [([1], "A")]
@@ -540,7 +540,7 @@ UNIDADES.extend([
                 [([1, 2], 'A')]
                 [([1, 2], 'A')]
                 True
-            ''', "El exterior se copia, pero su elemento es la misma tupla. La tupla conduce a la misma lista interior, que recibe el 2. La mutabilidad de ese objeto interior sigue siendo relevante aunque el elemento inmediato del exterior sea una tupla.", ["Predice las salidas y dibuja los tres niveles.", "¿Qué objeto cambia y cuáles permanecen compartidos?"]),
+            ''', "Se copia la lista exterior, pero su elemento sigue siendo la misma tupla. Esa tupla señala la misma lista interior, a la que se agrega `2`. Continúan compartidas la tupla y la lista que contiene.", ["Predice las salidas y dibuja los tres niveles.", "¿Qué objeto cambia y cuáles siguen compartidos?"]),
             programa("e20", "Dos carros comparten motor", '''
                 motor = {"caballos": 200}
                 carro1 = {"marca": "Toyota", "motor": motor}
@@ -554,11 +554,11 @@ UNIDADES.extend([
                 Toyota
                 300
                 True
-            ''', "Los diccionarios exteriores son distintos: cambiar la marca de carro2 no cambia la de carro1. El motor sigue compartido y pasa a contener 300 caballos. La última comparación comprueba esa identidad compartida.", ["Predice las salidas y explica por qué marca y motor se comportan de forma distinta.", "Propón cómo conservar el motor de carro1 sin cambios."]),
+            ''', "Los carros son diccionarios distintos: cambiar `carro2[\"marca\"]` no afecta a `carro1`. Sin embargo, comparten el diccionario `motor`, que ahora contiene `300` caballos. Para conservar el motor original, puedes usar `copy.deepcopy(carro1)`.", ["Predice las salidas. ¿Por qué la marca y el motor se comportan de forma distinta?", "¿Cómo harías que el motor de `carro1` conserve su valor?"]),
         ],
-        "variation": "En e20 usa copy.deepcopy(carro1) después de importar copy. En d10, explica por qué datos[0].append(3) y datos[0] = [3] afectan objetos diferentes.",
-        "variation_answer": "Con deepcopy, e20 imprimiría Toyota, 200 y False: se separa también el diccionario motor. append(3) modifica la lista interior de d10; la asignación datos[0] = [3] intentaría modificar las posiciones de la tupla y fallaría con TypeError.",
-        "checkpoint": "Puedo explicar y corregir un cambio compartido inesperado en un programa con listas y diccionarios anidados, sin depender de probar al azar.",
+        "variation": "En E20, importa `copy` y usa `copy.deepcopy(carro1)`. En D10, compara `datos[0].append(3)` con `datos[0] = [3]`: ¿qué objeto intenta modificar cada operación?",
+        "variation_answer": "E20 imprime `Toyota`, `200` y `False`: la copia tiene su propio diccionario del motor. En D10, `append(3)` cambia la lista interior; `datos[0] = [3]` intenta reemplazar un elemento de la tupla y produce `TypeError`.",
+        "checkpoint": "Puedo localizar y corregir un cambio compartido inesperado explicando cada paso.",
         "lab": "p04",
     },
 ])
@@ -567,7 +567,7 @@ UNIDADES.extend([
 PRACTICAS = [
     {
         "id": "p01", "section": "1.4", "title": "Identidad y cambios de estado",
-        "goal": "Comprobar la diferencia entre extender una lista compartida, construir otra lista y reasignar un entero.",
+        "goal": "Comprobar qué ocurre al ampliar una lista compartida, crear otra lista y sumar a un entero.",
         "initial": programa("p01", "Programa inicial", '''
             x = [1, 2]
             y = x
@@ -582,12 +582,12 @@ PRACTICAS = [
             [1, 2, 3]
             True
             10 13
-        ''', "La lista se extiende y conserva sus alias. El entero no se modifica: b se vincula al resultado de la suma."),
+        ''', "La lista compartida crece. El entero conserva su valor: `b` pasa a señalar el resultado de la suma."),
         "tasks": [
-            "Escribe la salida prevista y dibuja las referencias antes de ejecutar el programa inicial.",
-            "Ejecuta el archivo y conserva tu predicción. Registra cualquier diferencia y su explicación.",
-            "Variante A: cambia solo y += [3] por y = y + [3]. Predice y ejecuta de nuevo desde el inicio.",
-            "Variante B: haz que x y y terminen vacías y sigan siendo la misma lista. Decide entre y.clear() y y = []. Comprueba tu elección.",
+            "Predice la salida y dibuja las referencias del programa inicial.",
+            "Ejecuta el archivo. Conserva tu predicción y explica las diferencias que encuentres.",
+            "Variante A: cambia solo `y += [3]` por `y = y + [3]`. Predice y vuelve a ejecutar desde el inicio.",
+            "Variante B: haz que las listas de `x` y `y` terminen vacías y sigan siendo el mismo objeto. Elige entre `y.clear()` y `y = []`, y comprueba tu decisión.",
         ],
         "solution": programa("s01", "Solución de la variante B", '''
             x = [1, 2]
@@ -603,16 +603,16 @@ PRACTICAS = [
             []
             True
             10 13
-        ''', "clear() vacía el objeto compartido. y = [] no cumpliría la condición: dejaría x intacta y separaría los nombres."),
+        ''', "`clear()` vacía la lista que comparten `x` y `y`. Con `y = []`, la lista de `x` conservaría su contenido y los nombres señalarían listas distintas."),
         "answers": [
-            "Inicial: x queda [1, 2, 3], x is y es True y los enteros se muestran como 10 13.",
-            "Variante A: se imprime [1, 2], False y 10 13. + construye otra lista y la asignación cambia la referencia de y.",
-            "Variante B: clear() satisface las dos condiciones. Para comprobar contenidos e identidad también puedes imprimir y y comparar id(x) == id(y); el booleano debe ser True.",
+            "Inicial: se imprime `[1, 2, 3]`, `True` y `10 13`. La lista cambia; el entero `10` conserva su valor.",
+            "Variante A: se imprime `[1, 2]`, `False` y `10 13`. La operación `+` crea otra lista y `y` pasa a señalarla.",
+            "Variante B: `y.clear()` cumple ambas condiciones. Puedes imprimir `y` y comprobar `id(x) == id(y)`: debe dar `True`.",
         ],
     },
     {
         "id": "p02", "section": "1.5", "title": "Modificar, reasignar y devolver",
-        "goal": "Controlar si una función cambia la lista recibida o entrega otra lista al llamador.",
+        "goal": "Decidir si una función debe modificar la lista recibida o devolver otra lista.",
         "initial": programa("p02", "Programa inicial", '''
             def agregar_final(datos):
                 datos = datos + [99]
@@ -624,12 +624,12 @@ PRACTICAS = [
         ''', '''
             [1, 2]
             None
-        ''', "La función reasigna su parámetro y no tiene return explícito. original no cambia y resultado recibe None."),
+        ''', "La función hace que `datos` señale otra lista y termina sin devolverla. La lista de `original` conserva su contenido, y `resultado` recibe `None`."),
         "tasks": [
-            "Predice original y resultado. Distingue las listas a las que llegan original y datos justo después de la asignación dentro de la función.",
-            "Variante A: cambia el cuerpo por datos.append(99), sin añadir return. Predice original y resultado.",
-            "Variante B: conserva original intacta y devuelve una lista con 99 al final. Guarda el retorno en resultado y compara su identidad con original.",
-            "En la variante B, cambia la llamada a agregar_final(original) sin asignarla. Explica qué lista continúa disponible mediante original.",
+            "Predice lo que se imprime mediante `original` y `resultado`. Dibuja qué señalan `original` y `datos` dentro de la función.",
+            "Variante A: reemplaza el cuerpo por `datos.append(99)`, sin añadir `return`. Vuelve a predecir las salidas.",
+            "Variante B: conserva la lista de `original` y devuelve otra con `99` al final. Guárdala en `resultado` y compara ambas identidades.",
+            "En la variante B, llama a `agregar_final(original)` sin guardar el resultado. ¿Qué lista puedes seguir consultando mediante `original`?",
         ],
         "solution": programa("s02", "Solución de la variante B", '''
             def agregar_final(datos):
@@ -644,16 +644,16 @@ PRACTICAS = [
             [1, 2]
             [1, 2, 99]
             False
-        ''', "return entrega la lista nueva al llamador. resultado queda asociado a ella y original conserva la primera."),
+        ''', "`return` entrega la lista nueva al código que llamó a la función. La variable `resultado` la señala, mientras `original` conserva la primera lista."),
         "answers": [
-            "Inicial: aparecen [1, 2] y None. Justo después de reasignar datos, original llega a [1, 2] y el parámetro local datos llega a otra lista, [1, 2, 99].",
-            "Variante A: original pasa a [1, 2, 99]; resultado sigue siendo None porque append() no añade un return a la función.",
-            "Variante B: el código de solución devuelve otra lista. Si se ignora el retorno, original conserva [1, 2] y no se guarda un nombre para la lista resultante.",
+            "Inicial: se imprime `[1, 2]` y `None`. Dentro de la función, `datos` termina señalando otra lista, `[1, 2, 99]`, mientras `original` conserva la primera.",
+            "Variante A: la lista de `original` cambia a `[1, 2, 99]`. La variable `resultado` sigue recibiendo `None`: la función termina sin devolver un valor.",
+            "Variante B: la función devuelve otra lista. Si no guardas ese resultado, `original` sigue señalando `[1, 2]` y no conservas un nombre para la lista nueva.",
         ],
     },
     {
         "id": "p03", "section": "1.8", "title": "Construir filas independientes",
-        "goal": "Distinguir la copia del exterior de la creación de filas independientes.",
+        "goal": "Separar dos decisiones: crear filas independientes y copiar esas filas para otra matriz.",
         "initial": programa("p03", "Programa inicial", '''
             matrix = [[0] * 3] * 3
             copia = matrix.copy()
@@ -667,12 +667,12 @@ PRACTICAS = [
             [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
             False
             True
-        ''', "copy() separa los exteriores, pero ambos continúan llegando a la única fila compartida."),
+        ''', "`copy()` crea otra lista exterior, pero ambas siguen señalando una sola fila compartida."),
         "tasks": [
-            "Dibuja ambos exteriores y sus filas. Predice las cuatro salidas y luego ejecuta.",
-            "Variante A: construye matrix con un ciclo que cree una fila nueva por iteración. Conserva copia = matrix.copy(). ¿Qué compartición permanece?",
-            "Variante B: además de construir filas independientes, copia cada fila para que cambiar una celda de copia no cambie matrix. Usa lo aprendido hasta 1.8.",
-            "Comprueba la independencia con is entre filas y entre cada fila original y su copia. No utilices valores numéricos fijos de id().",
+            "Dibuja las listas exteriores y sus filas. Predice las cuatro salidas y después ejecuta.",
+            "Variante A: construye `matrix` con un ciclo que cree una fila en cada vuelta. Conserva `copia = matrix.copy()`. ¿Qué filas siguen compartidas?",
+            "Variante B: además de crear filas independientes, copia cada fila para que cambiar una celda de `copia` no cambie `matrix`. Usa lo aprendido hasta 1.8.",
+            "Comprueba con `is` si las filas son distintas entre sí y si cada original es distinta de su copia. Compara identidades; no escribas números fijos de `id()`.",
         ],
         "solution": programa("s03", "Solución de la variante B", '''
             matrix = [[0] * 3 for _ in range(3)]
@@ -687,16 +687,16 @@ PRACTICAS = [
             [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
             False
             False
-        ''', "Cada fila se construye por separado y después se copia por separado. Como sus elementos son enteros, este nivel de copia permite aislar las sustituciones de celdas."),
+        ''', "Cada fila se crea por separado y después se copia por separado. Como las celdas contienen enteros, basta con copiar estos dos niveles para cambiarlas sin afectar la matriz original."),
         "answers": [
-            "Inicial: se observan tres filas [1, 0, 0] en cada exterior; los exteriores son distintos, pero todos sus elementos llegan a una fila compartida.",
-            "Variante A: matrix y copia muestran [[1, 0, 0], [0, 0, 0], [0, 0, 0]]. Las filas de matrix son distintas entre sí, pero cada fila sigue compartida con la posición correspondiente de copia.",
-            "Variante B: la solución separa exteriores y filas. Copiar cada fila una vez es suficiente para estas celdas enteras; con objetos mutables dentro de las celdas habría que analizar otro nivel.",
+            "Inicial: ambas matrices muestran tres veces `[1, 0, 0]`. Las listas exteriores son distintas, pero todas sus posiciones señalan la misma fila.",
+            "Variante A: `matrix` y `copia` muestran `[[1, 0, 0], [0, 0, 0], [0, 0, 0]]`. Las filas de `matrix` son distintas entre sí, pero cada una sigue compartida con su posición en `copia`.",
+            "Variante B: se separan las listas exteriores y cada fila. Para estas celdas enteras, una copia de cada fila es suficiente. Si hubiera otros objetos mutables dentro, revisaríamos ese nivel también.",
         ],
     },
     {
         "id": "p04", "section": "1.10", "title": "Un equipo de trabajo independiente",
-        "goal": "Aplicar funciones y copia profunda a un problema con personas representadas por diccionarios.",
+        "goal": "Usar funciones y copia profunda para modificar un equipo sin alterar los datos del original.",
         "initial": programa("p04", "Programa inicial", '''
             def preparar_equipo(equipo):
                 nuevo = equipo.copy()
@@ -712,12 +712,12 @@ PRACTICAS = [
         ''', '''
             Desarrollo 99
             Pruebas 99
-        ''', "El exterior nuevo es distinto, pero comparte la lista miembros y el diccionario de Ana. Cambiar la edad se observa también mediante ana."),
+        ''', "Se crea otro diccionario exterior, pero se comparten la lista `\"miembros\"` y el diccionario de Ana. Por eso la edad también cambia al consultarla mediante `ana`."),
         "tasks": [
-            "Antes de ejecutar, dibuja equipo, la lista miembros y el diccionario de Ana. Predice las dos salidas.",
-            "Corrige preparar_equipo para que el equipo devuelto pueda cambiar de nombre y edad sin alterar original ni ana.",
-            "Comprueba tres niveles con is: equipo exterior, lista miembros y primer diccionario de persona. Justifica cada comparación.",
-            "Modifica después la edad de Ana en el original y verifica que la copia conserva su propia edad. Explica qué garantía comprobaste.",
+            "Antes de ejecutar, dibuja el equipo, la lista `\"miembros\"` y el diccionario de Ana. Predice las dos salidas.",
+            "Corrige `preparar_equipo()` para que el equipo devuelto cambie de nombre y edad sin modificar los objetos de `original` y `ana`.",
+            "Compara con `is` tres niveles: equipo, lista de miembros y primer diccionario de persona. Explica cada resultado.",
+            "Después, cambia la edad de Ana en el original. Comprueba que la copia conserva su edad y explica qué demuestra.",
         ],
         "solution": programa("s04", "Una solución con copia profunda", '''
             import copy
@@ -742,14 +742,30 @@ PRACTICAS = [
             False
             False
             False
-        ''', "deepcopy separa los tres niveles mutables. La función devuelve el exterior nuevo y el llamador lo conserva en copia."),
+        ''', "`deepcopy()` separa los tres niveles mutables. La función devuelve el nuevo diccionario y la variable `copia` lo conserva."),
         "answers": [
-            "Inicial: Desarrollo 99 y Pruebas 99. Solo se separó el diccionario exterior. El nombre de equipo no se propaga, pero la edad del diccionario compartido sí.",
-            "La solución imprime Desarrollo 25 y Pruebas 99. Las tres comparaciones de identidad son False porque se copiaron el exterior, miembros y el diccionario de persona.",
-            "Si después ejecutas ana[\"edad\"] = 26, original observa 26 y copia conserva 99. Es una comprobación adicional de que las personas son diccionarios independientes.",
+            "Inicial: se imprime `Desarrollo 99` y `Pruebas 99`. Solo se copió el diccionario exterior. El nombre del equipo cambia por separado, pero la edad pertenece a un diccionario compartido.",
+            "Con la solución se imprime `Desarrollo 25` y `Pruebas 99`. Las tres comparaciones dan `False`: se copiaron el equipo, la lista de miembros y el diccionario de la persona.",
+            "Si después escribes `ana[\"edad\"] = 26`, el equipo original muestra `26` y la copia conserva `99`. Los dos equipos tienen diccionarios de persona independientes.",
         ],
     },
 ]
+
+
+ANALOGIA = {
+    "title": "Tarjetas, etiquetas y flechas",
+    "intro": "Imagina tarjetas con números impresos. Una tiene el 5 y otra el 6. Como representan enteros, no podemos borrar el número para escribir otro. Cada tarjeta tiene además un folio que permite reconocerla.",
+    "labels": "La variable `x` es una etiqueta: señala una tarjeta. Si lo dibujamos, la flecha es la referencia y el folio representa la identidad. A y B son folios inventados para el dibujo; no son resultados de `id()`.",
+    "table": {
+        "headers": ["Concepto", "En `x = 5`"],
+        "rows": [["Nombre", "La etiqueta `x`."], ["Referencia", "La flecha desde `x` hasta la tarjeta."], ["Tipo", "`int`: la tarjeta representa un entero."], ["Valor", "El número `5` impreso en la tarjeta."], ["Identidad", "La tarjeta concreta, que distinguimos con su folio A."]],
+    },
+    "same": "Con `x = x`, miramos qué tarjeta señala `x` y volvemos a colocar la etiqueta en esa tarjeta. Hay una asignación, pero la etiqueta termina donde ya estaba.",
+    "other": "Con `x = x + 1`, leemos el 5, sumamos 1 y colocamos `x` en la tarjeta del 6. No cambiamos el número de la primera tarjeta: ahora señalamos otra.",
+    "code": "x = 5\nidentificador_inicial = id(x)\nx = x\nprint(id(x) == identificador_inicial)\nx = x + 1\nprint(id(x) == identificador_inicial)\n",
+    "expected": "True\nFalse\n",
+    "conclusion": "La identidad pertenece al objeto. Una asignación puede dejar una variable señalando el mismo objeto o hacer que señale otro. En este ejemplo, cuando cambia `id(x)`, cambia el objeto que señala `x`; ninguna tarjeta cambia de identidad.",
+}
 
 
 FUENTES = [

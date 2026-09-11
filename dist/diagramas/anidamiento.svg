@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="518.0" height="112" preserveAspectRatio="xMinYMin meet" viewBox="0 0 518 112" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="518.0" height="112"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-112)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="4" y="101" style="font-family: DejaVu Sans, sans-serif; font-weight: bold; font-size: 8.2px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,202) scale(1,-1)">Tras c[0][0] = 99: exteriores distintos, una lista interior</text>
+			<rect x="8" y="57" width="130" height="36" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="53.484375" y="82.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,164) scale(1,-1)">exterior b</text>
+			<text x="52.708984375" y="72.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,144) scale(1,-1)">posición 0</text>
+			<text x="52.708984375" y="62.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,124) scale(1,-1)">posición 1</text>
+			<rect x="8" y="10" width="130" height="36" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="53.82421875" y="35.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,70) scale(1,-1)">exterior c</text>
+			<text x="52.708984375" y="25.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,50) scale(1,-1)">posición 0</text>
+			<text x="52.708984375" y="15.0" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,30) scale(1,-1)">posición 1</text>
+			<rect x="353" y="30" width="153" height="53" rx="2" ry="2" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.65; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="385.4296875" y="58.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,117) scale(1,-1)">lista compartida por a</text>
+			<text x="416.201171875" y="48.5" style="font-family: DejaVu Sans, sans-serif; font-size: 8px;fill: rgb(9%,12%,15%); stroke:none;" transform="translate(0,97) scale(1,-1)">[99, 2]</text>
+			<path d="M 138,75 L 353,72 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="353 72, 348.0312 74.26955, 347.9698 69.86997" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 138,65 L 353,62 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="353 62, 348.0312 64.26955, 347.9698 59.86997" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 138,28 L 353,49 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="353 49, 347.8098 50.70352, 348.2375 46.32436" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+			<path d="M 138,18 L 353,39 Z" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<polygon points="353 39, 347.8098 40.70352, 348.2375 36.32436" style="stroke: rgb(9%,12%,15%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,12%,15%); fill-rule: evenodd;"/>
+		</g>
+	</g>
+</svg>

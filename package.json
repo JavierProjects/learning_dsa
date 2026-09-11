@@ -1,0 +1,12 @@
+{
+  "name": "learning-dsa-guide",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Verificación de la guía estática; la web no necesita instalar paquetes.",
+  "scripts": {
+    "test": "node etapa_01_objetos_referencias/herramientas/verificar_interaccion.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}
